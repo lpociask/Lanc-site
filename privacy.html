@@ -1,13 +1,345 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>LANC Privacy Policy</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="LANC Privacy Policy.">
+  <title>Privacy Policy - LANC</title>
+  <style>
+    :root {
+      --bg: #070809;
+      --surface: #111316;
+      --surface-2: #191b20;
+      --line: rgba(255, 255, 255, .10);
+      --text: #f6f2ec;
+      --muted: rgba(246, 242, 236, .68);
+      --soft: rgba(246, 242, 236, .44);
+      --copper: #e78243;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(231, 130, 67, .22), transparent 30rem),
+        linear-gradient(180deg, #050607 0%, var(--bg) 48%, #050607 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 780;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, rgba(231, 130, 67, .28), rgba(255, 255, 255, .04));
+      border: 1px solid var(--line);
+    }
+
+    .chain {
+      width: 23px;
+      height: 23px;
+      border: 3px solid var(--text);
+      border-radius: 999px;
+      transform: rotate(-35deg);
+      position: relative;
+    }
+
+    .chain::after {
+      content: "";
+      position: absolute;
+      width: 23px;
+      height: 23px;
+      border: 3px solid var(--text);
+      border-radius: 999px;
+      left: 14px;
+      top: -3px;
+      opacity: .85;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    nav a {
+      padding: 10px 13px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, .04);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 68px 0 36px;
+    }
+
+    .eyebrow {
+      color: var(--copper);
+      font-weight: 760;
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 8vw, 86px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 22px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .updated {
+      margin-top: 18px;
+      color: var(--soft);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .content {
+      display: grid;
+      gap: 16px;
+      padding: 28px 0 72px;
+    }
+
+    section {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .035));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 24px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    p, li {
+      color: var(--muted);
+      line-height: 1.58;
+      font-size: 16px;
+    }
+
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+    ul { margin: 0; padding-left: 20px; }
+    li + li { margin-top: 7px; }
+    strong { color: var(--text); }
+
+    .callout {
+      border-color: rgba(231, 130, 67, .32);
+      background: linear-gradient(180deg, rgba(231, 130, 67, .12), rgba(255, 255, 255, .035));
+    }
+
+    footer {
+      color: var(--soft);
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    @media (max-width: 620px) {
+      .page { width: min(100% - 24px, 920px); }
+      header { display: block; }
+      nav { margin-top: 16px; }
+      .hero { padding-top: 38px; }
+      section { padding: 20px; border-radius: 24px; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
+  <div class="page">
+    <header>
+      <a class="brand" href="index.html" aria-label="LANC home">
+        <span class="mark" aria-hidden="true"><span class="chain"></span></span>
+        <span>LANC</span>
+      </a>
+      <nav aria-label="Site navigation">
+        <a href="index.html">Home</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </header>
 
-    <p>LANC stores most user data locally on the device.</p>
+    <main>
+      <div class="hero">
+        <p class="eyebrow">Privacy Policy</p>
+        <h1>LANC Privacy Policy</h1>
+        <p class="lead">
+          LANC is designed as a local-first cycling system. Most of your bike, gear, service,
+          cost and build data stays on your device unless you choose to use optional integrations.
+        </p>
+        <p class="updated">Last updated: June 5, 2026</p>
+      </div>
 
-    <p>Contact: lpociask@me.com</p>
+      <div class="content">
+        <section class="callout">
+          <h2>Summary</h2>
+          <ul>
+            <li>LANC does not include advertising.</li>
+            <li>LANC does not sell your data.</li>
+            <li>LANC does not include tracking SDKs.</li>
+            <li>Strava and WeatherKit are optional.</li>
+            <li>Most app data is stored locally on your device.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Data Stored Locally</h2>
+          <p>LANC can store the information you add to the app, including:</p>
+          <ul>
+            <li>bikes, bike names, brands, models, years, notes and mileage,</li>
+            <li>components, compatibility standards and wheelset profiles,</li>
+            <li>service entries, service notes and service costs,</li>
+            <li>expenses, upgrade history and build versions,</li>
+            <li>Gear items, Gear Kit data, condition, batteries, storage and consumables,</li>
+            <li>photos you choose to attach to bikes, components or service records,</li>
+            <li>local backups and exported files you create from the app.</li>
+          </ul>
+          <p>This data is stored on your device using local Apple storage technologies. LANC does not operate a server that receives this data.</p>
+        </section>
+
+        <section>
+          <h2>Photos</h2>
+          <p>
+            If you add photos, LANC stores the selected images locally as part of your app data.
+            The app does not upload your photos to a LANC server.
+          </p>
+        </section>
+
+        <section>
+          <h2>Local Backup</h2>
+          <p>
+            LANC may allow you to export or import a local backup. Backup files are created only
+            when you choose to create them. If you share a backup file outside the app, the privacy
+            of that file depends on where you store or send it.
+          </p>
+        </section>
+
+        <section>
+          <h2>Strava</h2>
+          <p>
+            Strava integration is optional. If you choose to connect Strava, LANC uses the official
+            Strava OAuth flow to request access. LANC does not ask for or store your Strava password.
+          </p>
+          <p>When connected, LANC may access Strava data needed for app features, such as:</p>
+          <ul>
+            <li>activity summaries,</li>
+            <li>bike mileage and gear information,</li>
+            <li>ride statistics used for analytics and upgrade insights.</li>
+          </ul>
+          <p>
+            Strava tokens are stored locally on your device. You can disconnect Strava in the app.
+            Strava's own handling of your data is governed by Strava's privacy policy.
+          </p>
+        </section>
+
+        <section>
+          <h2>WeatherKit and Location</h2>
+          <p>
+            WeatherKit is optional and used to improve Ride Plan decisions. If you allow location
+            access, LANC can use your current location to request weather conditions for the ride
+            time you select.
+          </p>
+          <p>
+            LANC does not use location for advertising, tracking or background profiling. If
+            location permission is denied, Ride Plan still works with manual weather selection.
+          </p>
+        </section>
+
+        <section>
+          <h2>No Advertising or Tracking</h2>
+          <p>
+            LANC does not include third-party advertising SDKs, analytics tracking SDKs or data
+            brokers. LANC does not sell personal data.
+          </p>
+        </section>
+
+        <section>
+          <h2>Feedback and Support</h2>
+          <p>
+            If you send feedback by email, your email address and message are handled by your email
+            provider and received by LANC support. Do not include sensitive information unless it is
+            necessary for your support request.
+          </p>
+        </section>
+
+        <section>
+          <h2>Deleting Data</h2>
+          <p>
+            You can delete bikes, gear, service entries and other records inside the app where those
+            actions are available. Deleting the app from your device removes local app data from that
+            device. Disconnecting Strava removes the local Strava connection from LANC.
+          </p>
+        </section>
+
+        <section>
+          <h2>Children</h2>
+          <p>
+            LANC is not designed for children and does not knowingly collect personal data from
+            children.
+          </p>
+        </section>
+
+        <section>
+          <h2>Changes to This Policy</h2>
+          <p>
+            This policy may be updated as LANC evolves. The updated version will be posted on this
+            page with a new date.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+          <p>
+            For privacy questions, contact: <a href="mailto:lpociask@me.com">lpociask@me.com</a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer>© 2026 LANC. All rights reserved.</footer>
+  </div>
 </body>
 </html>
