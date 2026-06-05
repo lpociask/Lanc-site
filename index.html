@@ -62,33 +62,18 @@
       width: 42px;
       height: 42px;
       border-radius: 15px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, rgba(231, 130, 67, .28), rgba(255, 255, 255, .04));
+      display: block;
+      overflow: hidden;
+      background: #08090a;
       border: 1px solid var(--line);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 18px 38px var(--shadow);
     }
 
-    .chain {
-      width: 23px;
-      height: 23px;
-      border: 3px solid var(--text);
-      border-radius: 999px;
-      transform: rotate(-35deg);
-      position: relative;
-      opacity: .95;
-    }
-
-    .chain::after {
-      content: "";
-      position: absolute;
-      width: 23px;
-      height: 23px;
-      border: 3px solid var(--text);
-      border-radius: 999px;
-      left: 14px;
-      top: -3px;
-      opacity: .85;
+    .mark img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
 
     nav {
@@ -199,6 +184,18 @@
       padding: 28px 20px;
     }
 
+    .screen.app-shot {
+      padding: 0;
+      background: #070809;
+    }
+
+    .screen.app-shot img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
     .mock-title {
       font-size: 28px;
       font-weight: 820;
@@ -287,16 +284,28 @@
       gap: 14px;
     }
 
-    .slot {
-      min-height: 320px;
+    .screenshot-card {
       border-radius: 30px;
-      border: 1px dashed rgba(255, 255, 255, .18);
-      background: rgba(255, 255, 255, .035);
-      display: grid;
-      place-items: center;
-      color: var(--soft);
-      text-align: center;
-      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .03));
+      padding: 10px;
+      box-shadow: 0 26px 54px rgba(0, 0, 0, .30);
+    }
+
+    .screenshot-card img {
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+      display: block;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: #070809;
+    }
+
+    .screenshot-card figcaption {
+      padding: 12px 6px 4px;
+      color: var(--muted);
+      font-size: 14px;
       font-weight: 720;
     }
 
@@ -331,7 +340,6 @@
       nav { justify-content: flex-start; margin-top: 16px; }
       .hero { padding-bottom: 54px; }
       .screenshots { grid-template-columns: 1fr; }
-      .slot { min-height: 240px; }
       footer { display: block; }
       footer div:last-child { margin-top: 14px; }
     }
@@ -341,7 +349,7 @@
   <div class="page">
     <header>
       <a class="brand" href="index.html" aria-label="LANC home">
-        <span class="mark" aria-hidden="true"><span class="chain"></span></span>
+        <span class="mark" aria-hidden="true"><img src="assets/lanc-icon.png" alt=""></span>
         <span>LANC</span>
       </a>
       <nav aria-label="Site navigation">
@@ -368,21 +376,9 @@
           </div>
         </div>
 
-        <div class="phone" aria-label="App screenshot placeholder">
-          <div class="screen">
-            <div class="mock-title">Garage</div>
-            <div class="mock-card">
-              <strong>Grevil F7</strong>
-              <span>Ride ready • Gravel setup</span>
-            </div>
-            <div class="mock-card">
-              <strong>Ride Plan</strong>
-              <span>Pressure, risks and recommended kit</span>
-            </div>
-            <div class="mock-card">
-              <strong>Worth It</strong>
-              <span>Upgrade intelligence for your build</span>
-            </div>
+        <div class="phone" aria-label="LANC app screenshot">
+          <div class="screen app-shot">
+            <img src="assets/screenshot-garage.jpg" alt="LANC Garage screen showing bikes and readiness cards">
           </div>
         </div>
       </section>
@@ -430,14 +426,26 @@
       <section id="screenshots" aria-labelledby="screenshots-title">
         <div class="section-title">
           <h2 id="screenshots-title">Screenshots</h2>
-          <p>Use these slots for App Store and TestFlight screenshots as the visual story matures.</p>
+          <p>A first look at the calm cockpit: Garage, Ride Plan, Bike Passport and Gear wardrobe.</p>
         </div>
 
         <div class="screenshots">
-          <div class="slot">Garage screenshot</div>
-          <div class="slot">Ride Plan screenshot</div>
-          <div class="slot">Analytics screenshot</div>
-          <div class="slot">Gear screenshot</div>
+          <figure class="screenshot-card">
+            <img src="assets/screenshot-garage.jpg" alt="LANC Garage screen">
+            <figcaption>Garage</figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img src="assets/screenshot-plan.jpg" alt="LANC Ride Plan screen">
+            <figcaption>Ride Plan</figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img src="assets/screenshot-bike.jpg" alt="LANC Bike Passport screen">
+            <figcaption>Bike Passport</figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img src="assets/screenshot-gear.jpg" alt="LANC Gear wardrobe screen">
+            <figcaption>Gear</figcaption>
+          </figure>
         </div>
       </section>
     </main>
