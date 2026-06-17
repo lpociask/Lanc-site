@@ -50,6 +50,13 @@
       padding: 22px 0;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
     .brand {
       display: inline-flex;
       align-items: center;
@@ -95,6 +102,35 @@
       border-color: var(--line);
       background: rgba(255, 255, 255, .04);
       color: var(--text);
+    }
+
+    .language-toggle {
+      min-width: 74px;
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .06);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 760;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+
+    .language-toggle:hover {
+      border-color: rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .10);
+    }
+
+    .flag-emoji {
+      font-size: 20px;
+      line-height: 1;
     }
 
     .hero {
@@ -160,6 +196,131 @@
       color: #120c08;
       background: var(--copper);
       border-color: rgba(231, 130, 67, .9);
+    }
+
+    .button.primary:hover {
+      background: #f09352;
+    }
+
+    .store-spotlight {
+      padding: 6px 0 54px;
+    }
+
+    .store-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 26px;
+      padding: 26px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      background:
+        linear-gradient(135deg, rgba(231, 130, 67, .18), rgba(69, 163, 255, .10) 48%, rgba(255, 255, 255, .055)),
+        rgba(255, 255, 255, .045);
+      box-shadow: 0 30px 64px rgba(0, 0, 0, .30);
+    }
+
+    .store-lockup {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .store-icon {
+      width: 68px;
+      height: 68px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: #08090a;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 18px 38px rgba(0, 0, 0, .32);
+    }
+
+    .store-icon img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .store-kicker {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 820;
+    }
+
+    .store-copy h2 {
+      font-size: 32px;
+      line-height: 1.05;
+    }
+
+    .store-copy p {
+      max-width: 610px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 17px;
+    }
+
+    .store-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .store-pill {
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .10);
+      background: rgba(0, 0, 0, .18);
+      color: rgba(246, 242, 236, .78);
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .store-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .store-badge {
+      min-width: 190px;
+      min-height: 66px;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 18px;
+      color: #08090a;
+      background: linear-gradient(180deg, #fff8ee, #ded8ce);
+      border: 1px solid rgba(255, 255, 255, .34);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, .28);
+    }
+
+    .store-badge span {
+      font-size: 12px;
+      font-weight: 760;
+      line-height: 1.1;
+    }
+
+    .store-badge strong {
+      font-size: 24px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .store-note {
+      margin: 0;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 650;
+      text-align: right;
     }
 
     .phone {
@@ -325,9 +486,13 @@
 
     @media (max-width: 860px) {
       header { align-items: flex-start; }
+      .header-actions { align-items: flex-start; }
       nav { flex-wrap: wrap; justify-content: flex-end; }
       .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 36px; gap: 36px; }
       .phone { margin: 0 auto; }
+      .store-panel { grid-template-columns: 1fr; }
+      .store-actions { align-items: flex-start; }
+      .store-note { text-align: left; }
       .grid { grid-template-columns: 1fr; }
       .screenshots { grid-template-columns: repeat(2, 1fr); }
       .section-title { display: block; }
@@ -336,9 +501,34 @@
 
     @media (max-width: 560px) {
       .page { width: min(100% - 24px, 1120px); }
-      header { display: block; }
-      nav { justify-content: flex-start; margin-top: 16px; }
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+      .header-actions { display: contents; }
+      .language-toggle {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+      }
+      nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-content: flex-start;
+        margin-top: 16px;
+      }
       .hero { padding-bottom: 54px; }
+      .cta-row .button { width: 100%; }
+      .store-panel { padding: 20px; border-radius: 24px; }
+      .store-lockup { align-items: flex-start; }
+      .store-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 18px;
+      }
+      .store-copy h2 { font-size: 26px; }
+      .store-badge { width: 100%; }
       .screenshots { grid-template-columns: 1fr; }
       footer { display: block; }
       footer div:last-child { margin-top: 14px; }
@@ -352,111 +542,349 @@
         <span class="mark" aria-hidden="true"><img src="lanc-icon.png" alt=""></span>
         <span>LANC</span>
       </a>
-      <nav aria-label="Site navigation">
-        <a href="#features">Features</a>
-        <a href="#screenshots">Screenshots</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="support.html">Support</a>
-      </nav>
+      <div class="header-actions">
+        <nav aria-label="Site navigation" data-i18n-aria-label="nav.aria">
+          <a href="#app-store" data-i18n="nav.appStore">App Store</a>
+          <a href="#features" data-i18n="nav.features">Features</a>
+          <a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a>
+          <a href="privacy.html" data-i18n="nav.privacy">Privacy Policy</a>
+          <a href="support.html" data-i18n="nav.support">Support</a>
+        </nav>
+        <button class="language-toggle" type="button" id="language-toggle" aria-label="Switch to Polish">
+          <span class="flag-emoji" id="language-flag" aria-hidden="true">🇵🇱</span>
+          <span id="language-code">PL</span>
+        </button>
+      </div>
     </header>
 
     <main>
       <section class="hero">
         <div>
-          <p class="eyebrow">Premium cycling cockpit</p>
+          <p class="eyebrow" data-i18n="hero.eyebrow">Premium cycling cockpit</p>
           <h1>LANC</h1>
-          <p class="subtitle">Your Cycling System</p>
-          <p class="lead">
+          <p class="subtitle" data-i18n="hero.subtitle">Your Cycling System</p>
+          <p class="lead" data-i18n="hero.lead">
             LANC helps you keep a thoughtful digital garage: bikes, builds, ride readiness,
             compatibility, gear, service history, costs and upgrade intelligence in one calm system.
           </p>
           <div class="cta-row">
-            <a class="button primary" href="support.html">Get Support</a>
-            <a class="button" href="privacy.html">Read Privacy Policy</a>
+            <a class="button primary" href="https://apps.apple.com/us/app/lanc/id6774547243" target="_blank" rel="noopener" data-i18n="hero.appStore">Download on the App Store</a>
+            <a class="button" href="support.html" data-i18n="hero.support">Get Support</a>
+            <a class="button" href="privacy.html" data-i18n="hero.privacy">Read Privacy Policy</a>
           </div>
         </div>
 
         <div class="phone" aria-label="LANC app screenshot">
           <div class="screen app-shot">
-            <img src="screenshot-garage.jpg" alt="LANC Garage screen showing bikes and readiness cards">
+            <img src="screenshot-garage.jpg" alt="LANC Garage screen showing bikes and readiness cards" data-i18n-alt="hero.screenshotAlt">
+          </div>
+        </div>
+      </section>
+
+      <section class="store-spotlight" id="app-store" aria-labelledby="app-store-title">
+        <div class="store-panel">
+          <div class="store-lockup">
+            <span class="store-icon" aria-hidden="true"><img src="lanc-icon.png" alt=""></span>
+            <div class="store-copy">
+              <p class="store-kicker" data-i18n="store.kicker">Available now</p>
+              <h2 id="app-store-title" data-i18n="store.title">LANC is on the App Store.</h2>
+              <p data-i18n="store.body">Download the iPhone app and keep bikes, ride plans, gear and service decisions in one calm cycling system.</p>
+              <div class="store-pills" aria-label="App highlights" data-i18n-aria-label="store.pillsAria">
+                <span class="store-pill" data-i18n="store.pillOne">iPhone</span>
+                <span class="store-pill" data-i18n="store.pillTwo">Local-first</span>
+                <span class="store-pill" data-i18n="store.pillThree">Optional Strava</span>
+              </div>
+            </div>
+          </div>
+          <div class="store-actions">
+            <a class="store-badge" href="https://apps.apple.com/us/app/lanc/id6774547243" target="_blank" rel="noopener" aria-label="Download LANC on the App Store" data-i18n-aria-label="store.badgeAria">
+              <span data-i18n="store.badgeTop">Download on the</span>
+              <strong data-i18n="store.badgeBottom">App Store</strong>
+            </a>
+            <p class="store-note" data-i18n="store.note">Opens the LANC listing in the App Store.</p>
           </div>
         </div>
       </section>
 
       <section id="features" aria-labelledby="features-title">
         <div class="section-title">
-          <h2 id="features-title">Built around the bike</h2>
-          <p>Each module has a clear role: facts in the garage, decisions in Ride Plan and interpretation in Analytics.</p>
+          <h2 id="features-title" data-i18n="features.title">Built around the bike</h2>
+          <p data-i18n="features.body">Each module has a clear role: facts in the garage, decisions in Ride Plan and interpretation in Analytics.</p>
         </div>
 
         <div class="grid">
           <article class="card">
             <div class="icon">⌂</div>
-            <h3>Garage</h3>
-            <p>Your bikes, components, service records, costs, build history and wheelset profiles.</p>
+            <h3 data-i18n="features.garageTitle">Garage</h3>
+            <p data-i18n="features.garageBody">Your bikes, components, service records, costs, build history and wheelset profiles.</p>
           </article>
           <article class="card">
             <div class="icon">▱</div>
-            <h3>Ride Plan</h3>
-            <p>A calm pre-ride decision center for conditions, pressure, risks and the right gear kit.</p>
+            <h3 data-i18n="features.rideTitle">Ride Plan</h3>
+            <p data-i18n="features.rideBody">A calm pre-ride decision center for conditions, pressure, risks and the right gear kit.</p>
           </article>
           <article class="card">
             <div class="icon">↗</div>
-            <h3>Upgrade Intelligence</h3>
-            <p>Understand what changed in your build and whether upgrades were worth it over time.</p>
+            <h3 data-i18n="features.upgradeTitle">Upgrade Intelligence</h3>
+            <p data-i18n="features.upgradeBody">Understand what changed in your build and whether upgrades were worth it over time.</p>
           </article>
           <article class="card">
             <div class="icon">✓</div>
-            <h3>Compatibility</h3>
-            <p>Check drivetrain, brake, axle, freehub and tire standards before changes become expensive.</p>
+            <h3 data-i18n="features.compatibilityTitle">Compatibility</h3>
+            <p data-i18n="features.compatibilityBody">Check drivetrain, brake, axle, freehub and tire standards before changes become expensive.</p>
           </article>
           <article class="card">
             <div class="icon">▣</div>
-            <h3>Gear</h3>
-            <p>A premium gear wardrobe with kits, weather fit, condition, batteries and consumables.</p>
+            <h3 data-i18n="features.gearTitle">Gear</h3>
+            <p data-i18n="features.gearBody">A premium gear wardrobe with kits, weather fit, condition, batteries and consumables.</p>
           </article>
           <article class="card">
             <div class="icon">∿</div>
-            <h3>Analytics</h3>
-            <p>Local insights work without Strava; optional Strava data unlocks ride trends and deeper context.</p>
+            <h3 data-i18n="features.analyticsTitle">Analytics</h3>
+            <p data-i18n="features.analyticsBody">Local insights work without Strava; optional Strava data unlocks ride trends and deeper context.</p>
           </article>
         </div>
       </section>
 
       <section id="screenshots" aria-labelledby="screenshots-title">
         <div class="section-title">
-          <h2 id="screenshots-title">Screenshots</h2>
-          <p>A first look at the calm cockpit: Garage, Ride Plan, Bike Passport and Gear wardrobe.</p>
+          <h2 id="screenshots-title" data-i18n="screenshots.title">Screenshots</h2>
+          <p data-i18n="screenshots.body">A first look at the calm cockpit: Garage, Ride Plan, Bike Passport and Gear wardrobe.</p>
         </div>
 
         <div class="screenshots">
           <figure class="screenshot-card">
-            <img src="screenshot-garage.jpg" alt="LANC Garage screen">
-            <figcaption>Garage</figcaption>
+            <img src="screenshot-garage.jpg" alt="LANC Garage screen" data-i18n-alt="screenshots.garageAlt">
+            <figcaption data-i18n="screenshots.garageCaption">Garage</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img src="screenshot-plan.jpg" alt="LANC Ride Plan screen">
-            <figcaption>Ride Plan</figcaption>
+            <img src="screenshot-plan.jpg" alt="LANC Ride Plan screen" data-i18n-alt="screenshots.planAlt">
+            <figcaption data-i18n="screenshots.planCaption">Ride Plan</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img src="screenshot-bike.jpg" alt="LANC Bike Passport screen">
-            <figcaption>Bike Passport</figcaption>
+            <img src="screenshot-bike.jpg" alt="LANC Bike Passport screen" data-i18n-alt="screenshots.bikeAlt">
+            <figcaption data-i18n="screenshots.bikeCaption">Bike Passport</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img src="screenshot-gear.jpg" alt="LANC Gear wardrobe screen">
-            <figcaption>Gear</figcaption>
+            <img src="screenshot-gear.jpg" alt="LANC Gear wardrobe screen" data-i18n-alt="screenshots.gearAlt">
+            <figcaption data-i18n="screenshots.gearCaption">Gear</figcaption>
           </figure>
         </div>
       </section>
     </main>
 
     <footer>
-      <div>© 2026 LANC. All rights reserved.</div>
+      <div data-i18n="footer.rights">© 2026 LANC. All rights reserved.</div>
       <div>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="support.html">Support</a>
+        <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="support.html" data-i18n="footer.support">Support</a>
       </div>
     </footer>
   </div>
+  <script>
+    const translations = {
+      en: {
+        meta: {
+          title: "LANC - Your Cycling System",
+          description: "LANC is a premium cycling system for your bikes, builds, ride plans, gear, compatibility and upgrade intelligence."
+        },
+        language: {
+          aria: "Switch to Polish",
+          nextCode: "PL",
+          nextFlag: "🇵🇱"
+        },
+        nav: {
+          aria: "Site navigation",
+          appStore: "App Store",
+          features: "Features",
+          screenshots: "Screenshots",
+          privacy: "Privacy Policy",
+          support: "Support"
+        },
+        hero: {
+          eyebrow: "Premium cycling cockpit",
+          subtitle: "Your Cycling System",
+          lead: "LANC helps you keep a thoughtful digital garage: bikes, builds, ride readiness, compatibility, gear, service history, costs and upgrade intelligence in one calm system.",
+          appStore: "Download on the App Store",
+          support: "Get Support",
+          privacy: "Read Privacy Policy",
+          screenshotAlt: "LANC Garage screen showing bikes and readiness cards"
+        },
+        store: {
+          kicker: "Available now",
+          title: "LANC is on the App Store.",
+          body: "Download the iPhone app and keep bikes, ride plans, gear and service decisions in one calm cycling system.",
+          pillsAria: "App highlights",
+          pillOne: "iPhone",
+          pillTwo: "Local-first",
+          pillThree: "Optional Strava",
+          badgeAria: "Download LANC on the App Store",
+          badgeTop: "Download on the",
+          badgeBottom: "App Store",
+          note: "Opens the LANC listing in the App Store."
+        },
+        features: {
+          title: "Built around the bike",
+          body: "Each module has a clear role: facts in the garage, decisions in Ride Plan and interpretation in Analytics.",
+          garageTitle: "Garage",
+          garageBody: "Your bikes, components, service records, costs, build history and wheelset profiles.",
+          rideTitle: "Ride Plan",
+          rideBody: "A calm pre-ride decision center for conditions, pressure, risks and the right gear kit.",
+          upgradeTitle: "Upgrade Intelligence",
+          upgradeBody: "Understand what changed in your build and whether upgrades were worth it over time.",
+          compatibilityTitle: "Compatibility",
+          compatibilityBody: "Check drivetrain, brake, axle, freehub and tire standards before changes become expensive.",
+          gearTitle: "Gear",
+          gearBody: "A premium gear wardrobe with kits, weather fit, condition, batteries and consumables.",
+          analyticsTitle: "Analytics",
+          analyticsBody: "Local insights work without Strava; optional Strava data unlocks ride trends and deeper context."
+        },
+        screenshots: {
+          title: "Screenshots",
+          body: "A first look at the calm cockpit: Garage, Ride Plan, Bike Passport and Gear wardrobe.",
+          garageAlt: "LANC Garage screen",
+          garageCaption: "Garage",
+          planAlt: "LANC Ride Plan screen",
+          planCaption: "Ride Plan",
+          bikeAlt: "LANC Bike Passport screen",
+          bikeCaption: "Bike Passport",
+          gearAlt: "LANC Gear wardrobe screen",
+          gearCaption: "Gear"
+        },
+        footer: {
+          rights: "© 2026 LANC. All rights reserved.",
+          privacy: "Privacy Policy",
+          support: "Support"
+        }
+      },
+      pl: {
+        meta: {
+          title: "LANC - Twój system kolarski",
+          description: "LANC to premiumowy system kolarski do rowerów, buildów, planów jazdy, sprzętu, kompatybilności i decyzji upgrade'owych."
+        },
+        language: {
+          aria: "Switch to English",
+          nextCode: "EN",
+          nextFlag: "🇺🇸"
+        },
+        nav: {
+          aria: "Nawigacja strony",
+          appStore: "App Store",
+          features: "Funkcje",
+          screenshots: "Zrzuty ekranu",
+          privacy: "Prywatność",
+          support: "Wsparcie"
+        },
+        hero: {
+          eyebrow: "Premiumowy kokpit kolarski",
+          subtitle: "Twój system kolarski",
+          lead: "LANC pomaga prowadzić przemyślany cyfrowy garaż: rowery, buildy, gotowość do jazdy, kompatybilność, sprzęt, serwis, koszty i inteligencję upgrade'ów w jednym spokojnym systemie.",
+          appStore: "Pobierz w App Store",
+          support: "Wsparcie",
+          privacy: "Polityka prywatności",
+          screenshotAlt: "Ekran garażu LANC z rowerami i kartami gotowości"
+        },
+        store: {
+          kicker: "Już dostępne",
+          title: "LANC jest już w App Store.",
+          body: "Pobierz aplikację na iPhone'a i trzymaj rowery, plany jazd, sprzęt oraz decyzje serwisowe w jednym spokojnym systemie kolarskim.",
+          pillsAria: "Najważniejsze cechy aplikacji",
+          pillOne: "iPhone",
+          pillTwo: "Lokalne dane",
+          pillThree: "Strava opcjonalnie",
+          badgeAria: "Pobierz LANC w App Store",
+          badgeTop: "Pobierz w",
+          badgeBottom: "App Store",
+          note: "Otwiera stronę LANC w App Store."
+        },
+        features: {
+          title: "Zbudowany wokół roweru",
+          body: "Każdy moduł ma jasną rolę: fakty w garażu, decyzje w Ride Plan i interpretacja w Analytics.",
+          garageTitle: "Garage",
+          garageBody: "Twoje rowery, komponenty, wpisy serwisowe, koszty, historia buildu i profile kół.",
+          rideTitle: "Ride Plan",
+          rideBody: "Spokojne centrum decyzji przed jazdą: warunki, ciśnienie, ryzyka i właściwy zestaw sprzętu.",
+          upgradeTitle: "Upgrade Intelligence",
+          upgradeBody: "Zrozum, co zmieniło się w buildzie i czy upgrade'y miały sens w czasie.",
+          compatibilityTitle: "Compatibility",
+          compatibilityBody: "Sprawdzaj napęd, hamulce, osie, freehub i standardy opon, zanim zmiany staną się kosztowne.",
+          gearTitle: "Gear",
+          gearBody: "Premiumowa szafa sprzętu z kitami, dopasowaniem do pogody, stanem, bateriami i rzeczami zużywalnymi.",
+          analyticsTitle: "Analytics",
+          analyticsBody: "Lokalne insighty działają bez Stravy, a opcjonalne dane Stravy odblokowują trendy jazd i głębszy kontekst."
+        },
+        screenshots: {
+          title: "Zrzuty ekranu",
+          body: "Pierwszy rzut oka na spokojny kokpit: Garage, Ride Plan, Bike Passport i Gear.",
+          garageAlt: "Ekran Garage w LANC",
+          garageCaption: "Garage",
+          planAlt: "Ekran Ride Plan w LANC",
+          planCaption: "Ride Plan",
+          bikeAlt: "Ekran Bike Passport w LANC",
+          bikeCaption: "Bike Passport",
+          gearAlt: "Ekran Gear w LANC",
+          gearCaption: "Gear"
+        },
+        footer: {
+          rights: "© 2026 LANC. Wszelkie prawa zastrzeżone.",
+          privacy: "Prywatność",
+          support: "Wsparcie"
+        }
+      }
+    };
+
+    const languageToggle = document.getElementById("language-toggle");
+    const languageFlag = document.getElementById("language-flag");
+    const languageCode = document.getElementById("language-code");
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+
+    const valueFor = (source, path) => path.split(".").reduce((node, key) => node && node[key], source);
+
+    const applyLanguage = (language) => {
+      const copy = translations[language] || translations.en;
+
+      document.documentElement.lang = language;
+      document.title = copy.meta.title;
+      if (descriptionMeta) {
+        descriptionMeta.setAttribute("content", copy.meta.description);
+      }
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = valueFor(copy, element.dataset.i18n);
+        if (typeof value === "string") {
+          element.textContent = value;
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+        const value = valueFor(copy, element.dataset.i18nAlt);
+        if (typeof value === "string") {
+          element.setAttribute("alt", value);
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const value = valueFor(copy, element.dataset.i18nAriaLabel);
+        if (typeof value === "string") {
+          element.setAttribute("aria-label", value);
+        }
+      });
+
+      languageToggle.setAttribute("aria-label", copy.language.aria);
+      languageFlag.textContent = copy.language.nextFlag;
+      languageCode.textContent = copy.language.nextCode;
+      languageToggle.dataset.language = language;
+      localStorage.setItem("lanc-language", language);
+    };
+
+    const storedLanguage = localStorage.getItem("lanc-language");
+    const browserLanguage = navigator.language && navigator.language.toLowerCase().startsWith("pl") ? "pl" : "en";
+
+    applyLanguage(storedLanguage || browserLanguage);
+
+    languageToggle.addEventListener("click", () => {
+      applyLanguage(languageToggle.dataset.language === "pl" ? "en" : "pl");
+    });
+  </script>
 </body>
 </html>
