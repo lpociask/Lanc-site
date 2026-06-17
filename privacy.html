@@ -46,6 +46,13 @@
       padding: 22px 0;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
     .brand {
       display: inline-flex;
       align-items: center;
@@ -91,6 +98,35 @@
       border-color: var(--line);
       background: rgba(255, 255, 255, .04);
       color: var(--text);
+    }
+
+    .language-toggle {
+      min-width: 74px;
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .06);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 760;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+
+    .language-toggle:hover {
+      border-color: rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .10);
+    }
+
+    .flag-emoji {
+      font-size: 20px;
+      line-height: 1;
     }
 
     .hero {
@@ -171,8 +207,22 @@
 
     @media (max-width: 620px) {
       .page { width: min(100% - 24px, 920px); }
-      header { display: block; }
-      nav { margin-top: 16px; }
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+      .header-actions { display: contents; }
+      .language-toggle {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+      }
+      nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin-top: 16px;
+      }
       .hero { padding-top: 38px; }
       section { padding: 20px; border-radius: 24px; }
     }
@@ -185,61 +235,67 @@
         <span class="mark" aria-hidden="true"><img src="lanc-icon.png" alt=""></span>
         <span>LANC</span>
       </a>
-      <nav aria-label="Site navigation">
-        <a href="index.html">Home</a>
-        <a href="support.html">Support</a>
-      </nav>
+      <div class="header-actions">
+        <nav aria-label="Site navigation" data-i18n-aria-label="nav.aria">
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="support.html" data-i18n="nav.support">Support</a>
+        </nav>
+        <button class="language-toggle" type="button" id="language-toggle" aria-label="Switch to Polish">
+          <span class="flag-emoji" id="language-flag" aria-hidden="true">🇵🇱</span>
+          <span id="language-code">PL</span>
+        </button>
+      </div>
     </header>
 
     <main>
       <div class="hero">
-        <p class="eyebrow">Privacy Policy</p>
-        <h1>LANC Privacy Policy</h1>
-        <p class="lead">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Privacy Policy</p>
+        <h1 data-i18n="hero.title">LANC Privacy Policy</h1>
+        <p class="lead" data-i18n="hero.lead">
           LANC is designed as a local-first cycling system. Most of your bike, gear, service,
           cost and build data stays on your device unless you choose to use optional integrations.
         </p>
-        <p class="updated">Last updated: June 5, 2026</p>
+        <p class="updated" data-i18n="hero.updated">Last updated: June 5, 2026</p>
       </div>
 
       <div class="content">
         <section class="callout">
-          <h2>Summary</h2>
+          <h2 data-i18n="summary.title">Summary</h2>
           <ul>
-            <li>LANC does not include advertising.</li>
-            <li>LANC does not sell your data.</li>
-            <li>LANC does not include tracking SDKs.</li>
-            <li>Strava and WeatherKit are optional.</li>
-            <li>Most app data is stored locally on your device.</li>
+            <li data-i18n="summary.itemOne">LANC does not include advertising.</li>
+            <li data-i18n="summary.itemTwo">LANC does not sell your data.</li>
+            <li data-i18n="summary.itemThree">LANC does not include tracking SDKs.</li>
+            <li data-i18n="summary.itemFour">Strava and WeatherKit are optional.</li>
+            <li data-i18n="summary.itemFive">Most app data is stored locally on your device.</li>
           </ul>
         </section>
 
         <section>
-          <h2>Data Stored Locally</h2>
-          <p>LANC can store the information you add to the app, including:</p>
+          <h2 data-i18n="localData.title">Data Stored Locally</h2>
+          <p data-i18n="localData.intro">LANC can store the information you add to the app, including:</p>
           <ul>
-            <li>bikes, bike names, brands, models, years, notes and mileage,</li>
-            <li>components, compatibility standards and wheelset profiles,</li>
-            <li>service entries, service notes and service costs,</li>
-            <li>expenses, upgrade history and build versions,</li>
-            <li>Gear items, Gear Kit data, condition, batteries, storage and consumables,</li>
-            <li>photos you choose to attach to bikes, components or service records,</li>
-            <li>local backups and exported files you create from the app.</li>
+            <li data-i18n="localData.itemOne">bikes, bike names, brands, models, years, notes and mileage,</li>
+            <li data-i18n="localData.itemTwo">components, compatibility standards and wheelset profiles,</li>
+            <li data-i18n="localData.itemThree">service entries, service notes and service costs,</li>
+            <li data-i18n="localData.itemFour">expenses, upgrade history and build versions,</li>
+            <li data-i18n="localData.itemFive">Gear items, Gear Kit data, condition, batteries, storage and consumables,</li>
+            <li data-i18n="localData.itemSix">photos you choose to attach to bikes, components or service records,</li>
+            <li data-i18n="localData.itemSeven">local backups and exported files you create from the app.</li>
           </ul>
-          <p>This data is stored on your device using local Apple storage technologies. LANC does not operate a server that receives this data.</p>
+          <p data-i18n="localData.body">This data is stored on your device using local Apple storage technologies. LANC does not operate a server that receives this data.</p>
         </section>
 
         <section>
-          <h2>Photos</h2>
-          <p>
+          <h2 data-i18n="photos.title">Photos</h2>
+          <p data-i18n="photos.body">
             If you add photos, LANC stores the selected images locally as part of your app data.
             The app does not upload your photos to a LANC server.
           </p>
         </section>
 
         <section>
-          <h2>Local Backup</h2>
-          <p>
+          <h2 data-i18n="backup.title">Local Backup</h2>
+          <p data-i18n="backup.body">
             LANC may allow you to export or import a local backup. Backup files are created only
             when you choose to create them. If you share a backup file outside the app, the privacy
             of that file depends on where you store or send it.
@@ -247,47 +303,47 @@
         </section>
 
         <section>
-          <h2>Strava</h2>
-          <p>
+          <h2 data-i18n="strava.title">Strava</h2>
+          <p data-i18n="strava.bodyOne">
             Strava integration is optional. If you choose to connect Strava, LANC uses the official
             Strava OAuth flow to request access. LANC does not ask for or store your Strava password.
           </p>
-          <p>When connected, LANC may access Strava data needed for app features, such as:</p>
+          <p data-i18n="strava.intro">When connected, LANC may access Strava data needed for app features, such as:</p>
           <ul>
-            <li>activity summaries,</li>
-            <li>bike mileage and gear information,</li>
-            <li>ride statistics used for analytics and upgrade insights.</li>
+            <li data-i18n="strava.itemOne">activity summaries,</li>
+            <li data-i18n="strava.itemTwo">bike mileage and gear information,</li>
+            <li data-i18n="strava.itemThree">ride statistics used for analytics and upgrade insights.</li>
           </ul>
-          <p>
+          <p data-i18n="strava.bodyTwo">
             Strava tokens are stored locally on your device. You can disconnect Strava in the app.
             Strava's own handling of your data is governed by Strava's privacy policy.
           </p>
         </section>
 
         <section>
-          <h2>WeatherKit and Location</h2>
-          <p>
+          <h2 data-i18n="weather.title">WeatherKit and Location</h2>
+          <p data-i18n="weather.bodyOne">
             WeatherKit is optional and used to improve Ride Plan decisions. If you allow location
             access, LANC can use your current location to request weather conditions for the ride
             time you select.
           </p>
-          <p>
+          <p data-i18n="weather.bodyTwo">
             LANC does not use location for advertising, tracking or background profiling. If
             location permission is denied, Ride Plan still works with manual weather selection.
           </p>
         </section>
 
         <section>
-          <h2>No Advertising or Tracking</h2>
-          <p>
+          <h2 data-i18n="tracking.title">No Advertising or Tracking</h2>
+          <p data-i18n="tracking.body">
             LANC does not include third-party advertising SDKs, analytics tracking SDKs or data
             brokers. LANC does not sell personal data.
           </p>
         </section>
 
         <section>
-          <h2>Feedback and Support</h2>
-          <p>
+          <h2 data-i18n="feedback.title">Feedback and Support</h2>
+          <p data-i18n="feedback.body">
             If you send feedback by email, your email address and message are handled by your email
             provider and received by LANC support. Do not include sensitive information unless it is
             necessary for your support request.
@@ -295,8 +351,8 @@
         </section>
 
         <section>
-          <h2>Deleting Data</h2>
-          <p>
+          <h2 data-i18n="deleting.title">Deleting Data</h2>
+          <p data-i18n="deleting.body">
             You can delete bikes, gear, service entries and other records inside the app where those
             actions are available. Deleting the app from your device removes local app data from that
             device. Disconnecting Strava removes the local Strava connection from LANC.
@@ -304,31 +360,281 @@
         </section>
 
         <section>
-          <h2>Children</h2>
-          <p>
+          <h2 data-i18n="children.title">Children</h2>
+          <p data-i18n="children.body">
             LANC is not designed for children and does not knowingly collect personal data from
             children.
           </p>
         </section>
 
         <section>
-          <h2>Changes to This Policy</h2>
-          <p>
+          <h2 data-i18n="changes.title">Changes to This Policy</h2>
+          <p data-i18n="changes.body">
             This policy may be updated as LANC evolves. The updated version will be posted on this
             page with a new date.
           </p>
         </section>
 
         <section>
-          <h2>Contact</h2>
+          <h2 data-i18n="contact.title">Contact</h2>
           <p>
-            For privacy questions, contact: <a href="mailto:lpociask@me.com">lpociask@me.com</a>
+            <span data-i18n="contact.body">For privacy questions, contact:</span> <a href="mailto:lpociask@me.com">lpociask@me.com</a>
           </p>
         </section>
       </div>
     </main>
 
-    <footer>© 2026 LANC. All rights reserved.</footer>
+    <footer data-i18n="footer.rights">© 2026 LANC. All rights reserved.</footer>
   </div>
+  <script>
+    const translations = {
+      en: {
+        meta: {
+          title: "Privacy Policy - LANC",
+          description: "LANC Privacy Policy."
+        },
+        language: {
+          aria: "Switch to Polish",
+          nextCode: "PL",
+          nextFlag: "🇵🇱"
+        },
+        nav: {
+          aria: "Site navigation",
+          home: "Home",
+          support: "Support"
+        },
+        hero: {
+          eyebrow: "Privacy Policy",
+          title: "LANC Privacy Policy",
+          lead: "LANC is designed as a local-first cycling system. Most of your bike, gear, service, cost and build data stays on your device unless you choose to use optional integrations.",
+          updated: "Last updated: June 5, 2026"
+        },
+        summary: {
+          title: "Summary",
+          itemOne: "LANC does not include advertising.",
+          itemTwo: "LANC does not sell your data.",
+          itemThree: "LANC does not include tracking SDKs.",
+          itemFour: "Strava and WeatherKit are optional.",
+          itemFive: "Most app data is stored locally on your device."
+        },
+        localData: {
+          title: "Data Stored Locally",
+          intro: "LANC can store the information you add to the app, including:",
+          itemOne: "bikes, bike names, brands, models, years, notes and mileage,",
+          itemTwo: "components, compatibility standards and wheelset profiles,",
+          itemThree: "service entries, service notes and service costs,",
+          itemFour: "expenses, upgrade history and build versions,",
+          itemFive: "Gear items, Gear Kit data, condition, batteries, storage and consumables,",
+          itemSix: "photos you choose to attach to bikes, components or service records,",
+          itemSeven: "local backups and exported files you create from the app.",
+          body: "This data is stored on your device using local Apple storage technologies. LANC does not operate a server that receives this data."
+        },
+        photos: {
+          title: "Photos",
+          body: "If you add photos, LANC stores the selected images locally as part of your app data. The app does not upload your photos to a LANC server."
+        },
+        backup: {
+          title: "Local Backup",
+          body: "LANC may allow you to export or import a local backup. Backup files are created only when you choose to create them. If you share a backup file outside the app, the privacy of that file depends on where you store or send it."
+        },
+        strava: {
+          title: "Strava",
+          bodyOne: "Strava integration is optional. If you choose to connect Strava, LANC uses the official Strava OAuth flow to request access. LANC does not ask for or store your Strava password.",
+          intro: "When connected, LANC may access Strava data needed for app features, such as:",
+          itemOne: "activity summaries,",
+          itemTwo: "bike mileage and gear information,",
+          itemThree: "ride statistics used for analytics and upgrade insights.",
+          bodyTwo: "Strava tokens are stored locally on your device. You can disconnect Strava in the app. Strava's own handling of your data is governed by Strava's privacy policy."
+        },
+        weather: {
+          title: "WeatherKit and Location",
+          bodyOne: "WeatherKit is optional and used to improve Ride Plan decisions. If you allow location access, LANC can use your current location to request weather conditions for the ride time you select.",
+          bodyTwo: "LANC does not use location for advertising, tracking or background profiling. If location permission is denied, Ride Plan still works with manual weather selection."
+        },
+        tracking: {
+          title: "No Advertising or Tracking",
+          body: "LANC does not include third-party advertising SDKs, analytics tracking SDKs or data brokers. LANC does not sell personal data."
+        },
+        feedback: {
+          title: "Feedback and Support",
+          body: "If you send feedback by email, your email address and message are handled by your email provider and received by LANC support. Do not include sensitive information unless it is necessary for your support request."
+        },
+        deleting: {
+          title: "Deleting Data",
+          body: "You can delete bikes, gear, service entries and other records inside the app where those actions are available. Deleting the app from your device removes local app data from that device. Disconnecting Strava removes the local Strava connection from LANC."
+        },
+        children: {
+          title: "Children",
+          body: "LANC is not designed for children and does not knowingly collect personal data from children."
+        },
+        changes: {
+          title: "Changes to This Policy",
+          body: "This policy may be updated as LANC evolves. The updated version will be posted on this page with a new date."
+        },
+        contact: {
+          title: "Contact",
+          body: "For privacy questions, contact:"
+        },
+        footer: {
+          rights: "© 2026 LANC. All rights reserved."
+        }
+      },
+      pl: {
+        meta: {
+          title: "Polityka prywatności - LANC",
+          description: "Polityka prywatności aplikacji LANC."
+        },
+        language: {
+          aria: "Switch to English",
+          nextCode: "EN",
+          nextFlag: "🇺🇸"
+        },
+        nav: {
+          aria: "Nawigacja strony",
+          home: "Strona główna",
+          support: "Wsparcie"
+        },
+        hero: {
+          eyebrow: "Polityka prywatności",
+          title: "Polityka prywatności LANC",
+          lead: "LANC działa przede wszystkim lokalnie na iPhonie. Większość danych o rowerach, sprzęcie, serwisie, kosztach i konfiguracjach zostaje na Twoim urządzeniu, chyba że sam włączysz opcjonalne integracje.",
+          updated: "Ostatnia aktualizacja: 5 czerwca 2026"
+        },
+        summary: {
+          title: "W skrócie",
+          itemOne: "LANC nie zawiera reklam.",
+          itemTwo: "LANC nie sprzedaje Twoich danych.",
+          itemThree: "LANC nie zawiera zewnętrznych SDK do śledzenia.",
+          itemFour: "Strava i WeatherKit są opcjonalne.",
+          itemFive: "Większość danych aplikacji jest zapisywana lokalnie na Twoim urządzeniu."
+        },
+        localData: {
+          title: "Dane zapisane lokalnie",
+          intro: "LANC może przechowywać informacje, które dodasz w aplikacji, w tym:",
+          itemOne: "rowery, ich nazwy, marki, modele, roczniki, notatki i przebieg,",
+          itemTwo: "komponenty, standardy kompatybilności i zestawy kół,",
+          itemThree: "wpisy serwisowe, notatki serwisowe i koszty serwisu,",
+          itemFour: "wydatki, historię modernizacji i wersje konfiguracji,",
+          itemFive: "sprzęt, zestawy sprzętu, stan, baterie, miejsce przechowywania i rzeczy zużywalne,",
+          itemSix: "zdjęcia, które sam dodasz do rowerów, komponentów lub wpisów serwisowych,",
+          itemSeven: "lokalne kopie zapasowe i pliki eksportu utworzone w aplikacji.",
+          body: "Te dane są przechowywane na Twoim urządzeniu z użyciem lokalnych mechanizmów Apple. LANC nie prowadzi serwera, na który trafiałyby te dane."
+        },
+        photos: {
+          title: "Zdjęcia",
+          body: "Jeśli dodasz zdjęcia, LANC zapisuje wybrane obrazy lokalnie jako część danych aplikacji. Aplikacja nie wysyła Twoich zdjęć na serwer LANC."
+        },
+        backup: {
+          title: "Lokalna kopia zapasowa",
+          body: "LANC może pozwalać na eksport lub import lokalnej kopii zapasowej. Pliki kopii powstają tylko wtedy, gdy sam je utworzysz. Jeśli udostępnisz taki plik poza aplikacją, jego prywatność zależy od miejsca, w którym go zapiszesz lub wyślesz."
+        },
+        strava: {
+          title: "Strava",
+          bodyOne: "Integracja ze Stravą jest opcjonalna. Jeśli ją włączysz, LANC używa oficjalnego logowania OAuth Stravy. LANC nie prosi o Twoje hasło do Stravy i go nie przechowuje.",
+          intro: "Po połączeniu LANC może korzystać z danych Stravy potrzebnych do działania funkcji aplikacji, takich jak:",
+          itemOne: "podsumowania aktywności,",
+          itemTwo: "przebieg rowerów i informacje o sprzęcie,",
+          itemThree: "statystyki jazd używane w Analityce i przy ocenie modernizacji.",
+          bodyTwo: "Tokeny Stravy są zapisywane lokalnie na Twoim urządzeniu. Połączenie ze Stravą możesz odłączyć w aplikacji. Dane przetwarzane przez Stravę podlegają polityce prywatności Stravy."
+        },
+        weather: {
+          title: "WeatherKit i lokalizacja",
+          bodyOne: "WeatherKit jest opcjonalny i pomaga podejmować lepsze decyzje w Planie jazdy. Jeśli pozwolisz na dostęp do lokalizacji, LANC może użyć Twojej aktualnej pozycji, aby pobrać pogodę dla wybranego czasu jazdy.",
+          bodyTwo: "LANC nie używa lokalizacji do reklam, śledzenia ani profilowania w tle. Jeśli odmówisz dostępu do lokalizacji, Plan jazdy nadal działa z ręcznym wyborem pogody."
+        },
+        tracking: {
+          title: "Bez reklam i śledzenia",
+          body: "LANC nie zawiera zewnętrznych SDK reklamowych, SDK analitycznych do śledzenia ani brokerów danych. LANC nie sprzedaje danych osobowych."
+        },
+        feedback: {
+          title: "Opinie i wsparcie",
+          body: "Jeśli wyślesz opinię e-mailem, Twój adres e-mail i wiadomość są obsługiwane przez Twojego dostawcę poczty oraz trafiają do wsparcia LANC. Nie podawaj w wiadomości wrażliwych informacji, jeśli nie są potrzebne do rozwiązania sprawy."
+        },
+        deleting: {
+          title: "Usuwanie danych",
+          body: "W aplikacji możesz usuwać rowery, sprzęt, wpisy serwisowe i inne rekordy tam, gdzie taka akcja jest dostępna. Usunięcie aplikacji z urządzenia usuwa lokalne dane aplikacji z tego urządzenia. Odłączenie Stravy usuwa lokalne połączenie Stravy z LANC."
+        },
+        children: {
+          title: "Dzieci",
+          body: "LANC nie jest przeznaczony dla dzieci i nie zbiera świadomie danych osobowych dzieci."
+        },
+        changes: {
+          title: "Zmiany w polityce",
+          body: "Ta polityka może być aktualizowana wraz z rozwojem LANC. Nowa wersja zostanie opublikowana na tej stronie z aktualną datą."
+        },
+        contact: {
+          title: "Kontakt",
+          body: "W sprawach prywatności napisz:"
+        },
+        footer: {
+          rights: "© 2026 LANC. Wszelkie prawa zastrzeżone."
+        }
+      }
+    };
+
+    const languageToggle = document.getElementById("language-toggle");
+    const languageFlag = document.getElementById("language-flag");
+    const languageCode = document.getElementById("language-code");
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+
+    const valueFor = (source, path) => path.split(".").reduce((node, key) => node && node[key], source);
+    const languageStore = {
+      get: () => {
+        try {
+          return window.localStorage ? window.localStorage.getItem("lanc-language") : null;
+        } catch {
+          return null;
+        }
+      },
+      set: (language) => {
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem("lanc-language", language);
+          }
+        } catch {
+          // Storage can be unavailable in restrictive browser modes.
+        }
+      }
+    };
+
+    const applyLanguage = (language) => {
+      const copy = translations[language] || translations.en;
+
+      document.documentElement.lang = language;
+      document.title = copy.meta.title;
+      if (descriptionMeta) {
+        descriptionMeta.setAttribute("content", copy.meta.description);
+      }
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = valueFor(copy, element.dataset.i18n);
+        if (typeof value === "string") {
+          element.textContent = value;
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const value = valueFor(copy, element.dataset.i18nAriaLabel);
+        if (typeof value === "string") {
+          element.setAttribute("aria-label", value);
+        }
+      });
+
+      languageToggle.setAttribute("aria-label", copy.language.aria);
+      languageFlag.textContent = copy.language.nextFlag;
+      languageCode.textContent = copy.language.nextCode;
+      languageToggle.dataset.language = language;
+      languageStore.set(language);
+    };
+
+    const storedLanguage = languageStore.get();
+    const browserLanguage = navigator.language && navigator.language.toLowerCase().startsWith("pl") ? "pl" : "en";
+
+    applyLanguage(storedLanguage || browserLanguage);
+
+    languageToggle.addEventListener("click", () => {
+      applyLanguage(languageToggle.dataset.language === "pl" ? "en" : "pl");
+    });
+  </script>
 </body>
 </html>

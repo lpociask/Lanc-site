@@ -134,12 +134,45 @@
     }
 
     .hero {
-      min-height: 680px;
+      position: relative;
+      isolation: isolate;
+      width: 100vw;
+      min-height: 600px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 470px);
       gap: 56px;
       align-items: center;
-      padding: 64px 0 86px;
+      margin-left: calc(50% - 50vw);
+      padding: 56px max(32px, calc((100vw - 1120px) / 2 + 16px)) 60px;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(5, 6, 7, .94), rgba(5, 6, 7, .64) 46%, rgba(5, 6, 7, .28)),
+        linear-gradient(180deg, rgba(5, 6, 7, .26), rgba(5, 6, 7, .84)),
+        url("assets/group-ride.jpg") center / cover;
+      filter: saturate(.94);
+    }
+
+    .hero::after {
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(7, 8, 9, .08), rgba(7, 8, 9, .96)),
+        radial-gradient(circle at 22% 22%, rgba(231, 130, 67, .22), transparent 34rem);
+    }
+
+    .hero-copy {
+      max-width: 680px;
     }
 
     .eyebrow {
@@ -172,6 +205,27 @@
       line-height: 1.55;
     }
 
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 26px;
+    }
+
+    .hero-proof span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      background: rgba(255, 255, 255, .07);
+      color: rgba(246, 242, 236, .86);
+      font-size: 13px;
+      font-weight: 720;
+      backdrop-filter: blur(12px);
+    }
+
     .cta-row {
       display: flex;
       flex-wrap: wrap;
@@ -200,6 +254,108 @@
 
     .button.primary:hover {
       background: #f09352;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 560px;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 34px 0 92px 76px;
+      border-radius: 34px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .03)),
+        url("assets/bike-build.jpg") center / cover;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .42);
+      opacity: .72;
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 34px 0 92px 76px;
+      border-radius: 34px;
+      background: linear-gradient(90deg, rgba(7, 8, 9, .18), rgba(7, 8, 9, .74));
+    }
+
+    .hero-phone-wrap {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-badge {
+      position: absolute;
+      z-index: 2;
+      top: 44px;
+      right: 0;
+      min-width: 176px;
+      padding: 16px 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(7, 8, 9, .72);
+      box-shadow: 0 22px 44px rgba(0, 0, 0, .34);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-badge span {
+      display: block;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
+    .hero-badge strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      line-height: 1.05;
+    }
+
+    .hero-stat-row {
+      position: absolute;
+      z-index: 2;
+      left: 8px;
+      right: 8px;
+      bottom: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .hero-stat {
+      min-height: 92px;
+      padding: 14px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      background: rgba(7, 8, 9, .70);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, .28);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-stat strong {
+      display: block;
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.05;
+    }
+
+    .hero-stat span {
+      display: block;
+      margin-top: 7px;
+      color: rgba(246, 242, 236, .68);
+      font-size: 12px;
+      line-height: 1.28;
+      font-weight: 650;
     }
 
     .store-spotlight {
@@ -502,13 +658,16 @@
 
     .phone {
       width: min(100%, 390px);
-      margin-left: auto;
       aspect-ratio: 9 / 19.5;
       border-radius: 52px;
       padding: 14px;
       border: 1px solid rgba(255, 255, 255, .18);
       background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .03));
       box-shadow: 0 44px 80px rgba(0, 0, 0, .62);
+    }
+
+    .hero .phone {
+      width: min(100%, 300px);
     }
 
     .screen {
@@ -665,7 +824,23 @@
       header { align-items: flex-start; }
       .header-actions { align-items: flex-start; }
       nav { flex-wrap: wrap; justify-content: flex-end; }
-      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 36px; gap: 36px; }
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 42px max(24px, calc((100vw - 1120px) / 2 + 16px)) 58px;
+        gap: 34px;
+      }
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(5, 6, 7, .76), rgba(5, 6, 7, .72) 44%, rgba(5, 6, 7, .92)),
+          url("assets/group-ride.jpg") center / cover;
+      }
+      .hero-visual { min-height: 560px; }
+      .hero-visual::before,
+      .hero-visual::after {
+        inset: 28px 10px 92px;
+      }
+      .hero-badge { right: 22px; }
       .phone { margin: 0 auto; }
       .store-panel { grid-template-columns: 1fr; }
       .store-actions { align-items: flex-start; }
@@ -698,8 +873,40 @@
         justify-content: flex-start;
         margin-top: 16px;
       }
-      .hero { padding-bottom: 54px; }
+      .hero {
+        padding: 34px 24px 46px;
+      }
+      .hero-proof span { width: 100%; }
+      .hero-visual { min-height: 520px; }
+      .hero-visual::before,
+      .hero-visual::after {
+        inset: 18px 0 120px;
+        border-radius: 26px;
+      }
+      .hero-badge {
+        top: 28px;
+        right: 12px;
+        min-width: 150px;
+        padding: 13px 14px;
+        border-radius: 20px;
+      }
+      .hero-badge strong { font-size: 19px; }
+      .hero-stat-row {
+        grid-template-columns: 1fr;
+        bottom: 0;
+        gap: 8px;
+      }
+      .hero-stat {
+        min-height: auto;
+        padding: 12px 14px;
+      }
       .cta-row .button { width: 100%; }
+      .phone {
+        width: min(100%, 310px);
+        border-radius: 44px;
+      }
+      .hero .phone { width: min(100%, 310px); }
+      .screen { border-radius: 32px; }
       .store-panel { padding: 20px; border-radius: 24px; }
       .store-lockup { align-items: flex-start; }
       .store-icon {
@@ -755,15 +962,21 @@
     </header>
 
     <main>
-      <section class="hero">
-        <div>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
           <p class="eyebrow" data-i18n="hero.eyebrow">Premium cycling cockpit</p>
-          <h1>LANC</h1>
+          <h1 id="hero-title">LANC</h1>
           <p class="subtitle" data-i18n="hero.subtitle">Your Cycling System</p>
           <p class="lead" data-i18n="hero.lead">
             LANC helps you keep a thoughtful digital garage: bikes, builds, ride readiness,
             compatibility, gear, service history, costs and upgrade intelligence in one calm system.
           </p>
+          <div class="hero-proof" aria-label="LANC highlights" data-i18n-aria-label="hero.proofAria">
+            <span data-i18n="hero.proofOne">Bike builds</span>
+            <span data-i18n="hero.proofTwo">Ride checks</span>
+            <span data-i18n="hero.proofThree">Service and costs</span>
+            <span data-i18n="hero.proofFour">Gear kits</span>
+          </div>
           <div class="cta-row">
             <a class="button primary" href="https://apps.apple.com/us/app/lanc/id6774547243" target="_blank" rel="noopener" data-i18n="hero.appStore">Download on the App Store</a>
             <a class="button" href="support.html" data-i18n="hero.support">Get Support</a>
@@ -771,9 +984,31 @@
           </div>
         </div>
 
-        <div class="phone" aria-label="LANC app screenshot">
-          <div class="screen app-shot">
-            <img src="screenshot-garage.jpg" alt="LANC Garage screen showing bikes and readiness cards" data-i18n-alt="hero.screenshotAlt">
+        <div class="hero-visual">
+          <div class="hero-badge">
+            <span data-i18n="hero.badgeTop">Available now</span>
+            <strong data-i18n="hero.badgeBottom">App Store</strong>
+          </div>
+          <div class="hero-phone-wrap">
+            <div class="phone" aria-label="LANC app screenshot" data-i18n-aria-label="hero.phoneAria">
+              <div class="screen app-shot">
+                <img src="screenshot-garage.jpg" alt="LANC Garage screen showing bikes and readiness cards" data-i18n-alt="hero.screenshotAlt">
+              </div>
+            </div>
+          </div>
+          <div class="hero-stat-row" aria-label="LANC product promises" data-i18n-aria-label="hero.statsAria">
+            <div class="hero-stat">
+              <strong data-i18n="hero.statOneValue">1 place</strong>
+              <span data-i18n="hero.statOneLabel">for bikes, gear and service</span>
+            </div>
+            <div class="hero-stat">
+              <strong data-i18n="hero.statTwoValue">No ads</strong>
+              <span data-i18n="hero.statTwoLabel">and no data selling</span>
+            </div>
+            <div class="hero-stat">
+              <strong data-i18n="hero.statThreeValue">Strava</strong>
+              <span data-i18n="hero.statThreeLabel">only when you want it</span>
+            </div>
           </div>
         </div>
       </section>
@@ -847,7 +1082,7 @@
             </div>
           </article>
           <article class="scenario-card">
-            <img src="assets/bike-build.jpg" alt="Black road bike side profile with lights" loading="lazy" data-i18n-alt="useCases.buildAlt">
+            <img src="assets/bike-build-clean.jpg" alt="Black road bike side profile against a bright wall" loading="lazy" data-i18n-alt="useCases.buildAlt">
             <div class="scenario-copy">
               <p class="scenario-kicker" data-i18n="useCases.buildKicker">02 / Bike passport</p>
               <h3 data-i18n="useCases.buildTitle">Keep the build honest</h3>
@@ -985,9 +1220,24 @@
           eyebrow: "Premium cycling cockpit",
           subtitle: "Your Cycling System",
           lead: "LANC helps you keep a thoughtful digital garage: bikes, builds, ride readiness, compatibility, gear, service history, costs and upgrade intelligence in one calm system.",
+          proofAria: "LANC highlights",
+          proofOne: "Bike builds",
+          proofTwo: "Ride checks",
+          proofThree: "Service and costs",
+          proofFour: "Gear kits",
           appStore: "Download on the App Store",
           support: "Get Support",
           privacy: "Read Privacy Policy",
+          badgeTop: "Available now",
+          badgeBottom: "App Store",
+          phoneAria: "LANC app screenshot",
+          statsAria: "LANC product promises",
+          statOneValue: "1 place",
+          statOneLabel: "for bikes, gear and service",
+          statTwoValue: "No ads",
+          statTwoLabel: "and no data selling",
+          statThreeValue: "Strava",
+          statThreeLabel: "only when you want it",
           screenshotAlt: "LANC Garage screen showing bikes and readiness cards"
         },
         store: {
@@ -1023,7 +1273,7 @@
           preRideKicker: "01 / Before the ride",
           preRideTitle: "Leave with the right setup",
           preRideBody: "Pick the bike, pressure, layers, lights and repair kit before the ride starts.",
-          buildAlt: "Black road bike side profile with lights",
+          buildAlt: "Black road bike side profile against a bright wall",
           buildKicker: "02 / Bike passport",
           buildTitle: "Keep the build honest",
           buildBody: "Track components, wheels, tires, drivetrain standards and service history in one bike passport.",
@@ -1080,7 +1330,7 @@
       pl: {
         meta: {
           title: "LANC - Twój system kolarski",
-          description: "LANC to premiumowy system kolarski do rowerów, buildów, planów jazdy, sprzętu, kompatybilności i decyzji upgrade'owych."
+          description: "LANC to system kolarski do rowerów, konfiguracji, planów jazdy, sprzętu, kompatybilności, serwisu, kosztów i decyzji o modernizacjach."
         },
         language: {
           aria: "Switch to English",
@@ -1097,12 +1347,27 @@
           support: "Wsparcie"
         },
         hero: {
-          eyebrow: "Premiumowy kokpit kolarski",
-          subtitle: "Twój system kolarski",
-          lead: "LANC pomaga prowadzić przemyślany cyfrowy garaż: rowery, buildy, gotowość do jazdy, kompatybilność, sprzęt, serwis, koszty i inteligencję upgrade'ów w jednym spokojnym systemie.",
+          eyebrow: "Kolarski system na iPhone'a",
+          subtitle: "Garaż, plan jazdy i serwis w jednym miejscu",
+          lead: "LANC porządkuje rowery, komponenty, zestawy, serwis, koszty i przygotowanie do jazdy. Mniej notatek, mniej zgadywania, więcej pewności przed kolejną trasą.",
+          proofAria: "Najważniejsze obszary LANC",
+          proofOne: "Rowery i konfiguracje",
+          proofTwo: "Sprawdzenie przed jazdą",
+          proofThree: "Serwis i koszty",
+          proofFour: "Sprzęt i zestawy",
           appStore: "Pobierz w App Store",
           support: "Wsparcie",
           privacy: "Polityka prywatności",
+          badgeTop: "Już dostępne",
+          badgeBottom: "App Store",
+          phoneAria: "Zrzut ekranu aplikacji LANC",
+          statsAria: "Najważniejsze obietnice produktu LANC",
+          statOneValue: "1 miejsce",
+          statOneLabel: "na rowery, sprzęt i serwis",
+          statTwoValue: "Bez reklam",
+          statTwoLabel: "i bez sprzedaży danych",
+          statThreeValue: "Strava",
+          statThreeLabel: "tylko jeśli chcesz",
           screenshotAlt: "Ekran garażu LANC z rowerami i kartami gotowości"
         },
         store: {
@@ -1111,7 +1376,7 @@
           body: "Pobierz aplikację na iPhone'a i trzymaj rowery, plany jazd, sprzęt oraz decyzje serwisowe w jednym spokojnym systemie kolarskim.",
           pillsAria: "Najważniejsze cechy aplikacji",
           pillOne: "iPhone",
-          pillTwo: "Lokalne dane",
+          pillTwo: "Dane na iPhonie",
           pillThree: "Strava opcjonalnie",
           badgeAria: "Pobierz LANC w App Store",
           badgeTop: "Pobierz w",
@@ -1119,13 +1384,13 @@
           note: "Otwiera stronę LANC w App Store."
         },
         realRides: {
-          imageAlt: "Grupowa jazda szosowa pod dramatycznymi chmurami",
-          caption: "Prawdziwy kontekst jazdy, nie stockowy teatr rowerowy.",
+          imageAlt: "Grupowa jazda szosowa w zmiennej pogodzie",
+          caption: "Zdjęcia z prawdziwej jazdy i decyzje, które naprawdę dzieją się przed trasą.",
           eyebrow: "Realne jazdy, realne decyzje",
-          title: "LANC jest między garażem a trasą.",
-          body: "Zbiera małe decyzje wokół każdej jazdy w jeden spokojny proces: wybór roweru, sprawdzenie konfiguracji, spakowanie zestawu, ocenę ryzyka i późniejsze zrozumienie, co naprawdę poprawiło ustawienie.",
+          title: "LANC łączy garaż z trasą.",
+          body: "Zbiera drobne decyzje wokół każdej jazdy w jeden prosty proces: wybór roweru, sprawdzenie konfiguracji, przygotowanie zestawu, ocenę ryzyka i późniejsze sprawdzenie, co naprawdę poprawiło jazdę.",
           pointOneTitle: "Przed",
-          pointOneBody: "Plan jazdy zamienia pogodę, ciśnienie i braki w sprzęcie w krótką checklistę.",
+          pointOneBody: "Plan jazdy zamienia pogodę, ciśnienie i braki w sprzęcie w krótką listę kontrolną.",
           pointTwoTitle: "W sezonie",
           pointTwoBody: "Garaż trzyma każdy rower, komponent, zestaw kół i serwis w jednym kontekście.",
           pointThreeTitle: "Po",
@@ -1133,15 +1398,15 @@
         },
         useCases: {
           title: "Scenariusze z realnej jazdy",
-          body: "Kilka konkretnych momentów, w których LANC zastępuje luźne notatki, pamięć i zgadywanie przed jazdą.",
+          body: "Kilka konkretnych momentów, w których LANC zastępuje luźne notatki, pamięć i zgadywanie przed wyjściem na rower.",
           preRideAlt: "Rower z przednią i tylną lampką nocą",
           preRideKicker: "01 / Przed jazdą",
           preRideTitle: "Wyjdź z właściwą konfiguracją",
-          preRideBody: "Wybierz rower, ciśnienie, warstwy, lampki i zestaw naprawczy zanim ruszysz.",
-          buildAlt: "Czarny rower szosowy z lampkami z boku",
+          preRideBody: "Wybierz rower, ciśnienie, ubranie, lampki i zestaw naprawczy, zanim ruszysz.",
+          buildAlt: "Czarny rower szosowy pokazany z boku",
           buildKicker: "02 / Paszport roweru",
           buildTitle: "Pilnuj konfiguracji roweru",
-          buildBody: "Trzymaj komponenty, koła, opony, standardy napędu i serwis w jednym paszporcie roweru.",
+          buildBody: "Trzymaj komponenty, koła, opony, standardy napędu i historię serwisu w jednym paszporcie roweru.",
           gearAlt: "Widok z góry na rower z torbami i bidonami",
           gearKicker: "03 / Sprzęt i zestawy",
           gearTitle: "Wiedz, co spakować",
@@ -1153,23 +1418,23 @@
         },
         features: {
           title: "Zbudowany wokół roweru",
-          body: "Każdy moduł ma jasną rolę: fakty w Garażu, decyzje w Planie jazdy i interpretacja w Analityce.",
+          body: "Każdy moduł ma prostą rolę: porządek w Garażu, decyzje w Planie jazdy i podsumowania w Analityce.",
           garageTitle: "Garaż",
-          garageBody: "Twoje rowery, komponenty, wpisy serwisowe, koszty, historia buildu i profile kół.",
+          garageBody: "Twoje rowery, komponenty, wpisy serwisowe, koszty, historia konfiguracji i zestawy kół.",
           rideTitle: "Plan jazdy",
-          rideBody: "Spokojne centrum decyzji przed jazdą: warunki, ciśnienie, ryzyka i właściwy zestaw sprzętu.",
-          upgradeTitle: "Upgrade’y",
-          upgradeBody: "Zrozum, co zmieniło się w buildzie i czy upgrade'y miały sens w czasie.",
+          rideBody: "Spokojne centrum decyzji przed jazdą: pogoda, ciśnienie, ryzyka i właściwy zestaw sprzętu.",
+          upgradeTitle: "Modernizacje",
+          upgradeBody: "Sprawdź, co zmieniło się w rowerze i czy dana modernizacja naprawdę miała sens.",
           compatibilityTitle: "Kompatybilność",
-          compatibilityBody: "Sprawdzaj napęd, hamulce, osie, freehub i standardy opon, zanim zmiany staną się kosztowne.",
+          compatibilityBody: "Sprawdzaj napęd, hamulce, osie, bębenki i standardy opon, zanim zmiana zrobi się kosztowna.",
           gearTitle: "Sprzęt",
-          gearBody: "Premiumowa szafa sprzętu z kitami, dopasowaniem do pogody, stanem, bateriami i rzeczami zużywalnymi.",
+          gearBody: "Porządek w ubraniach, akcesoriach, bateriach, rzeczach zużywalnych i zestawach na różne warunki.",
           analyticsTitle: "Analityka",
-          analyticsBody: "Lokalne insighty działają bez Stravy, a opcjonalne dane Stravy odblokowują trendy jazd i głębszy kontekst."
+          analyticsBody: "Podsumowania działają lokalnie, a opcjonalne połączenie ze Stravą dodaje trendy jazd i szerszy kontekst."
         },
         screenshots: {
           title: "Zrzuty ekranu",
-          body: "Pierwszy rzut oka na spokojny kokpit: Garaż, Plan jazdy, Paszport roweru i Sprzęt.",
+          body: "Zobacz najważniejsze ekrany: Garaż, Plan jazdy, Paszport roweru i Sprzęt.",
           garageAlt: "Ekran Garażu w LANC",
           garageCaption: "Garaż",
           planAlt: "Ekran Planu jazdy w LANC",
@@ -1183,7 +1448,7 @@
           imageAlt: "Kolarze jadący leśną drogą",
           eyebrow: "Dla ludzi, którzy naprawdę jeżdżą",
           title: "Pobierz LANC i zamień rowery w system.",
-          body: "Spokojniejszy garaż, ostrzejsze sprawdzenie przed jazdą i mniej przypadkowych notatek przed kolejną trasą.",
+          body: "Spokojniejszy garaż, dokładniejsze sprawdzenie przed jazdą i mniej przypadkowych notatek przed kolejną trasą.",
           button: "Pobierz LANC w App Store"
         },
         footer: {

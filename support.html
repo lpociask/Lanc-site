@@ -48,6 +48,13 @@
       padding: 22px 0;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
     .brand {
       display: inline-flex;
       align-items: center;
@@ -93,6 +100,35 @@
       border-color: var(--line);
       background: rgba(255, 255, 255, .04);
       color: var(--text);
+    }
+
+    .language-toggle {
+      min-width: 74px;
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .06);
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 760;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+
+    .language-toggle:hover {
+      border-color: rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .10);
+    }
+
+    .flag-emoji {
+      font-size: 20px;
+      line-height: 1;
     }
 
     .hero {
@@ -189,8 +225,22 @@
 
     @media (max-width: 760px) {
       .page { width: min(100% - 24px, 980px); }
-      header { display: block; }
-      nav { margin-top: 16px; }
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+      .header-actions { display: contents; }
+      .language-toggle {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+      }
+      nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin-top: 16px;
+      }
       .hero { padding-top: 38px; }
       .content { grid-template-columns: 1fr; }
       section { padding: 20px; border-radius: 24px; }
@@ -204,84 +254,274 @@
         <span class="mark" aria-hidden="true"><img src="lanc-icon.png" alt=""></span>
         <span>LANC</span>
       </a>
-      <nav aria-label="Site navigation">
-        <a href="index.html">Home</a>
-        <a href="privacy.html">Privacy Policy</a>
-      </nav>
+      <div class="header-actions">
+        <nav aria-label="Site navigation" data-i18n-aria-label="nav.aria">
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="privacy.html" data-i18n="nav.privacy">Privacy Policy</a>
+        </nav>
+        <button class="language-toggle" type="button" id="language-toggle" aria-label="Switch to Polish">
+          <span class="flag-emoji" id="language-flag" aria-hidden="true">🇵🇱</span>
+          <span id="language-code">PL</span>
+        </button>
+      </div>
     </header>
 
     <main>
       <div class="hero">
-        <p class="eyebrow">Support</p>
-        <h1>LANC Support</h1>
-        <p class="lead">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Support</p>
+        <h1 data-i18n="hero.title">LANC Support</h1>
+        <p class="lead" data-i18n="hero.lead">
           Help, feedback and beta support for LANC - Your Cycling System.
         </p>
       </div>
 
       <div class="content">
         <section class="wide">
-          <h2>About LANC</h2>
-          <p>
+          <h2 data-i18n="about.title">About LANC</h2>
+          <p data-i18n="about.body">
             LANC is a premium cycling system for managing bikes, builds, compatibility,
             Ride Plan decisions, gear, service history, costs and upgrade intelligence.
           </p>
         </section>
 
         <section class="wide">
-          <h2>FAQ</h2>
+          <h2 data-i18n="faq.title">FAQ</h2>
 
-          <h3>How do I add a bike?</h3>
-          <p>
+          <h3 data-i18n="faq.bikeTitle">How do I add a bike?</h3>
+          <p data-i18n="faq.bikeBody">
             Open Garage, tap the add button and choose whether you want to start from the
             LANC Bike Catalog or enter the bike manually. You can edit the details later.
           </p>
 
-          <h3>How do I connect Strava?</h3>
-          <p>
+          <h3 data-i18n="faq.stravaTitle">How do I connect Strava?</h3>
+          <p data-i18n="faq.stravaBody">
             Open the Strava section in the app and tap Connect with Strava. LANC uses the
             official Strava login flow. You do not need to enter technical tokens manually.
           </p>
 
-          <h3>How do I make a backup?</h3>
-          <p>
+          <h3 data-i18n="faq.backupTitle">How do I make a backup?</h3>
+          <p data-i18n="faq.backupBody">
             Open More, go to Backup and export your local data. Keep the exported file in a
             safe place if you want to restore it later.
           </p>
         </section>
 
         <section>
-          <h2>Contact</h2>
-          <p>For feedback, beta notes and support questions:</p>
-          <a class="button" href="mailto:lpociask@me.com?subject=LANC%20Feedback">Send Feedback</a>
-          <p class="quiet">Email: lpociask@me.com</p>
+          <h2 data-i18n="contact.title">Contact</h2>
+          <p data-i18n="contact.body">For feedback, beta notes and support questions:</p>
+          <a class="button" href="mailto:lpociask@me.com?subject=LANC%20Feedback" data-i18n="contact.button">Send Feedback</a>
+          <p class="quiet"><span data-i18n="contact.emailLabel">Email:</span> lpociask@me.com</p>
         </section>
 
         <section>
-          <h2>Feature Requests</h2>
-          <p>
+          <h2 data-i18n="features.title">Feature Requests</h2>
+          <p data-i18n="features.body">
             Tell us what would make LANC more useful for your bikes, riding style, gear and
             upgrade decisions.
           </p>
-          <a class="button" href="mailto:lpociask@me.com?subject=LANC%20Feature%20Request">Send Feature Request</a>
+          <a class="button" href="mailto:lpociask@me.com?subject=LANC%20Feature%20Request" data-i18n="features.button">Send Feature Request</a>
         </section>
 
         <section class="wide">
-          <h2>Bug Reports</h2>
-          <p>When reporting a bug, please include:</p>
+          <h2 data-i18n="bugs.title">Bug Reports</h2>
+          <p data-i18n="bugs.body">When reporting a bug, please include:</p>
           <ul>
-            <li>your iPhone model and iOS version,</li>
-            <li>what you were trying to do,</li>
-            <li>what happened instead,</li>
-            <li>whether Strava or WeatherKit was involved,</li>
-            <li>a screenshot or screen recording if possible.</li>
+            <li data-i18n="bugs.itemOne">your iPhone model and iOS version,</li>
+            <li data-i18n="bugs.itemTwo">what you were trying to do,</li>
+            <li data-i18n="bugs.itemThree">what happened instead,</li>
+            <li data-i18n="bugs.itemFour">whether Strava or WeatherKit was involved,</li>
+            <li data-i18n="bugs.itemFive">a screenshot or screen recording if possible.</li>
           </ul>
-          <a class="button" href="mailto:lpociask@me.com?subject=LANC%20Bug%20Report">Send Bug Report</a>
+          <a class="button" href="mailto:lpociask@me.com?subject=LANC%20Bug%20Report" data-i18n="bugs.button">Send Bug Report</a>
         </section>
       </div>
     </main>
 
-    <footer>© 2026 LANC. All rights reserved.</footer>
+    <footer data-i18n="footer.rights">© 2026 LANC. All rights reserved.</footer>
   </div>
+  <script>
+    const translations = {
+      en: {
+        meta: {
+          title: "Support - LANC",
+          description: "LANC support, FAQ, feedback, feature requests and bug reports."
+        },
+        language: {
+          aria: "Switch to Polish",
+          nextCode: "PL",
+          nextFlag: "🇵🇱"
+        },
+        nav: {
+          aria: "Site navigation",
+          home: "Home",
+          privacy: "Privacy Policy"
+        },
+        hero: {
+          eyebrow: "Support",
+          title: "LANC Support",
+          lead: "Help, feedback and beta support for LANC - Your Cycling System."
+        },
+        about: {
+          title: "About LANC",
+          body: "LANC is a premium cycling system for managing bikes, builds, compatibility, Ride Plan decisions, gear, service history, costs and upgrade intelligence."
+        },
+        faq: {
+          title: "FAQ",
+          bikeTitle: "How do I add a bike?",
+          bikeBody: "Open Garage, tap the add button and choose whether you want to start from the LANC Bike Catalog or enter the bike manually. You can edit the details later.",
+          stravaTitle: "How do I connect Strava?",
+          stravaBody: "Open the Strava section in the app and tap Connect with Strava. LANC uses the official Strava login flow. You do not need to enter technical tokens manually.",
+          backupTitle: "How do I make a backup?",
+          backupBody: "Open More, go to Backup and export your local data. Keep the exported file in a safe place if you want to restore it later."
+        },
+        contact: {
+          title: "Contact",
+          body: "For feedback, beta notes and support questions:",
+          button: "Send Feedback",
+          emailLabel: "Email:"
+        },
+        features: {
+          title: "Feature Requests",
+          body: "Tell us what would make LANC more useful for your bikes, riding style, gear and upgrade decisions.",
+          button: "Send Feature Request"
+        },
+        bugs: {
+          title: "Bug Reports",
+          body: "When reporting a bug, please include:",
+          itemOne: "your iPhone model and iOS version,",
+          itemTwo: "what you were trying to do,",
+          itemThree: "what happened instead,",
+          itemFour: "whether Strava or WeatherKit was involved,",
+          itemFive: "a screenshot or screen recording if possible.",
+          button: "Send Bug Report"
+        },
+        footer: {
+          rights: "© 2026 LANC. All rights reserved."
+        }
+      },
+      pl: {
+        meta: {
+          title: "Wsparcie - LANC",
+          description: "Wsparcie LANC, FAQ, opinie, propozycje funkcji i zgłoszenia błędów."
+        },
+        language: {
+          aria: "Switch to English",
+          nextCode: "EN",
+          nextFlag: "🇺🇸"
+        },
+        nav: {
+          aria: "Nawigacja strony",
+          home: "Strona główna",
+          privacy: "Prywatność"
+        },
+        hero: {
+          eyebrow: "Wsparcie",
+          title: "Wsparcie LANC",
+          lead: "Pomoc, opinie i kontakt w sprawie LANC - Twojego systemu kolarskiego."
+        },
+        about: {
+          title: "O LANC",
+          body: "LANC to system kolarski do prowadzenia rowerów, konfiguracji, kompatybilności, Planu jazdy, sprzętu, historii serwisu, kosztów i decyzji o modernizacjach."
+        },
+        faq: {
+          title: "FAQ",
+          bikeTitle: "Jak dodać rower?",
+          bikeBody: "Otwórz Garaż, stuknij przycisk dodawania i wybierz, czy chcesz zacząć od katalogu rowerów LANC, czy wpisać rower ręcznie. Szczegóły możesz później edytować.",
+          stravaTitle: "Jak połączyć Stravę?",
+          stravaBody: "Otwórz sekcję Strava w aplikacji i wybierz połączenie ze Stravą. LANC używa oficjalnego logowania Stravy, więc nie musisz ręcznie wpisywać żadnych tokenów technicznych.",
+          backupTitle: "Jak zrobić kopię zapasową?",
+          backupBody: "Otwórz Więcej, przejdź do Kopii zapasowej i wyeksportuj lokalne dane. Zachowaj plik w bezpiecznym miejscu, jeśli chcesz móc później odtworzyć dane."
+        },
+        contact: {
+          title: "Kontakt",
+          body: "W sprawie opinii, testów beta i pytań o wsparcie:",
+          button: "Wyślij opinię",
+          emailLabel: "E-mail:"
+        },
+        features: {
+          title: "Propozycje funkcji",
+          body: "Napisz, co sprawiłoby, że LANC byłby bardziej przydatny dla Twoich rowerów, stylu jazdy, sprzętu i decyzji o modernizacjach.",
+          button: "Wyślij propozycję"
+        },
+        bugs: {
+          title: "Zgłoszenia błędów",
+          body: "Przy zgłoszeniu błędu podaj proszę:",
+          itemOne: "model iPhone'a i wersję iOS,",
+          itemTwo: "co próbowałeś zrobić,",
+          itemThree: "co stało się zamiast tego,",
+          itemFour: "czy problem dotyczył Stravy lub WeatherKit,",
+          itemFive: "zrzut ekranu albo nagranie ekranu, jeśli to możliwe.",
+          button: "Zgłoś błąd"
+        },
+        footer: {
+          rights: "© 2026 LANC. Wszelkie prawa zastrzeżone."
+        }
+      }
+    };
+
+    const languageToggle = document.getElementById("language-toggle");
+    const languageFlag = document.getElementById("language-flag");
+    const languageCode = document.getElementById("language-code");
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+
+    const valueFor = (source, path) => path.split(".").reduce((node, key) => node && node[key], source);
+    const languageStore = {
+      get: () => {
+        try {
+          return window.localStorage ? window.localStorage.getItem("lanc-language") : null;
+        } catch {
+          return null;
+        }
+      },
+      set: (language) => {
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem("lanc-language", language);
+          }
+        } catch {
+          // Storage can be unavailable in restrictive browser modes.
+        }
+      }
+    };
+
+    const applyLanguage = (language) => {
+      const copy = translations[language] || translations.en;
+
+      document.documentElement.lang = language;
+      document.title = copy.meta.title;
+      if (descriptionMeta) {
+        descriptionMeta.setAttribute("content", copy.meta.description);
+      }
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = valueFor(copy, element.dataset.i18n);
+        if (typeof value === "string") {
+          element.textContent = value;
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const value = valueFor(copy, element.dataset.i18nAriaLabel);
+        if (typeof value === "string") {
+          element.setAttribute("aria-label", value);
+        }
+      });
+
+      languageToggle.setAttribute("aria-label", copy.language.aria);
+      languageFlag.textContent = copy.language.nextFlag;
+      languageCode.textContent = copy.language.nextCode;
+      languageToggle.dataset.language = language;
+      languageStore.set(language);
+    };
+
+    const storedLanguage = languageStore.get();
+    const browserLanguage = navigator.language && navigator.language.toLowerCase().startsWith("pl") ? "pl" : "en";
+
+    applyLanguage(storedLanguage || browserLanguage);
+
+    languageToggle.addEventListener("click", () => {
+      applyLanguage(languageToggle.dataset.language === "pl" ? "en" : "pl");
+    });
+  </script>
 </body>
 </html>
