@@ -258,31 +258,10 @@
 
     .hero-visual {
       position: relative;
-      min-height: 560px;
+      min-height: 520px;
       display: grid;
       align-items: center;
       justify-items: center;
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 34px 0 92px 76px;
-      border-radius: 34px;
-      border: 1px solid rgba(255, 255, 255, .12);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .03)),
-        url("assets/bike-build.jpg") center / cover;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, .42);
-      opacity: .72;
-    }
-
-    .hero-visual::after {
-      content: "";
-      position: absolute;
-      inset: 34px 0 92px 76px;
-      border-radius: 34px;
-      background: linear-gradient(90deg, rgba(7, 8, 9, .18), rgba(7, 8, 9, .74));
     }
 
     .hero-phone-wrap {
@@ -592,22 +571,40 @@
     }
 
     .phone {
+      position: relative;
       width: min(100%, 390px);
       aspect-ratio: 9 / 19.5;
-      border-radius: 52px;
-      padding: 14px;
-      border: 1px solid rgba(255, 255, 255, .18);
-      background: linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .03));
-      box-shadow: 0 44px 80px rgba(0, 0, 0, .62);
+      border-radius: 58px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, .24);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .30), rgba(255, 255, 255, .04) 30%, rgba(255, 255, 255, .16) 100%),
+        #050607;
+      box-shadow: 0 38px 78px rgba(0, 0, 0, .62);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 17px;
+      left: 50%;
+      width: 84px;
+      height: 25px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: #050607;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 4px 12px rgba(0, 0, 0, .38);
+      pointer-events: none;
     }
 
     .hero .phone {
-      width: min(100%, 300px);
+      width: min(100%, 312px);
     }
 
     .screen {
       height: 100%;
-      border-radius: 40px;
+      border-radius: 48px;
       overflow: hidden;
       background:
         radial-gradient(circle at 25% 12%, rgba(231, 130, 67, .24), transparent 12rem),
@@ -770,11 +767,7 @@
           linear-gradient(180deg, rgba(5, 6, 7, .76), rgba(5, 6, 7, .72) 44%, rgba(5, 6, 7, .92)),
           url("assets/group-ride.jpg") center / cover;
       }
-      .hero-visual { min-height: 560px; }
-      .hero-visual::before,
-      .hero-visual::after {
-        inset: 28px 10px 92px;
-      }
+      .hero-visual { min-height: 500px; }
       .phone { margin: 0 auto; }
       .store-panel { grid-template-columns: 1fr; }
       .store-actions { align-items: flex-start; }
@@ -812,18 +805,18 @@
       }
       .hero-proof span { width: 100%; }
       .hero-visual { min-height: 520px; }
-      .hero-visual::before,
-      .hero-visual::after {
-        inset: 18px 0 120px;
-        border-radius: 26px;
-      }
       .cta-row .button { width: 100%; }
       .phone {
         width: min(100%, 310px);
-        border-radius: 44px;
+        border-radius: 52px;
       }
       .hero .phone { width: min(100%, 310px); }
-      .screen { border-radius: 32px; }
+      .phone::before {
+        top: 15px;
+        width: 78px;
+        height: 23px;
+      }
+      .screen { border-radius: 42px; }
       .store-panel { padding: 20px; border-radius: 24px; }
       .store-lockup { align-items: flex-start; }
       .store-icon {
