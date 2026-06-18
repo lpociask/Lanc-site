@@ -24,6 +24,10 @@
 
     * { box-sizing: border-box; }
 
+    html {
+      overflow-x: hidden;
+    }
+
     body {
       margin: 0;
       color: var(--text);
@@ -32,6 +36,7 @@
         radial-gradient(circle at 84% 6%, rgba(69, 163, 255, .10), transparent 26rem),
         linear-gradient(180deg, #050607 0%, var(--bg) 42%, #050607 100%);
       min-height: 100vh;
+      overflow-x: hidden;
       letter-spacing: 0;
     }
 
@@ -391,6 +396,111 @@
       font-size: 13px;
       font-weight: 650;
       text-align: right;
+    }
+
+    .announcement {
+      padding: 0 0 56px;
+    }
+
+    .announcement-panel {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr);
+      gap: 28px;
+      align-items: center;
+      padding: 28px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      background:
+        linear-gradient(135deg, rgba(47, 213, 104, .12), rgba(231, 130, 67, .11) 54%, rgba(255, 255, 255, .045)),
+        rgba(255, 255, 255, .035);
+      box-shadow: 0 30px 64px rgba(0, 0, 0, .30);
+    }
+
+    .announcement-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 8% 18%, rgba(47, 213, 104, .16), transparent 20rem),
+        radial-gradient(circle at 72% 22%, rgba(69, 163, 255, .10), transparent 22rem);
+      pointer-events: none;
+    }
+
+    .announcement-copy,
+    .announcement-media {
+      position: relative;
+      z-index: 1;
+    }
+
+    .announcement-copy h2 {
+      max-width: 700px;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: .98;
+    }
+
+    .announcement-copy p:not(.eyebrow) {
+      max-width: 650px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.56;
+    }
+
+    .announcement-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .announcement-tags span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .11);
+      background: rgba(0, 0, 0, .18);
+      color: rgba(246, 242, 236, .82);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .announcement-media {
+      min-height: 320px;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: #070809;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, .28);
+    }
+
+    .announcement-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .announcement-media figcaption {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      width: fit-content;
+      max-width: calc(100% - 32px);
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(7, 8, 9, .68);
+      color: rgba(246, 242, 236, .82);
+      font-size: 13px;
+      font-weight: 720;
+      backdrop-filter: blur(14px);
     }
 
     .story-showcase {
@@ -772,6 +882,8 @@
       .store-panel { grid-template-columns: 1fr; }
       .store-actions { align-items: flex-start; }
       .store-note { text-align: left; }
+      .announcement-panel { grid-template-columns: 1fr; }
+      .announcement-media { min-height: 360px; }
       .story-showcase { grid-template-columns: 1fr; }
       .story-photo { min-height: 420px; }
       .scenario-grid { grid-template-columns: 1fr; }
@@ -826,6 +938,10 @@
       }
       .store-copy h2 { font-size: 26px; }
       .store-badge { width: 100%; }
+      .announcement-panel { padding: 20px; border-radius: 24px; }
+      .announcement-copy h2 { font-size: 31px; }
+      .announcement-copy p:not(.eyebrow) { font-size: 16px; }
+      .announcement-media { min-height: 290px; border-radius: 22px; }
       .story-photo { min-height: 360px; border-radius: 24px; }
       .story-copy { padding: 12px 0; }
       .scenario-card { border-radius: 24px; }
@@ -927,6 +1043,25 @@
             </a>
             <p class="store-note" data-i18n="store.note">Opens the LANC listing in the App Store.</p>
           </div>
+        </div>
+      </section>
+
+      <section class="announcement" id="lanc-2" aria-labelledby="announcement-title">
+        <div class="announcement-panel">
+          <div class="announcement-copy">
+            <p class="eyebrow" data-i18n="announcement.eyebrow">Small preview</p>
+            <h2 id="announcement-title" data-i18n="announcement.title">LANC 2.0 is warming up with Janusz.</h2>
+            <p data-i18n="announcement.body">Janusz is already turning the first pedals inside the next LANC. We are keeping the full story in the garage for now, but the direction is simple: smarter pre-ride guidance, cleaner decisions and a little more personality in the cockpit.</p>
+            <div class="announcement-tags" aria-label="LANC 2.0 teaser notes" data-i18n-aria-label="announcement.tagsAria">
+              <span data-i18n="announcement.tagOne">LANC 2.0</span>
+              <span data-i18n="announcement.tagTwo">Janusz</span>
+              <span data-i18n="announcement.tagThree">Coming next</span>
+            </div>
+          </div>
+          <figure class="announcement-media">
+            <img src="assets/janusz-lanc-2.jpg" alt="Phone showing a preview of Janusz in the LANC app" loading="lazy" data-i18n-alt="announcement.imageAlt">
+            <figcaption data-i18n="announcement.caption">First quiet signal from the next chapter.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -1136,6 +1271,17 @@
           badgeBottom: "App Store",
           note: "Opens the LANC listing in the App Store."
         },
+        announcement: {
+          eyebrow: "Small preview",
+          title: "LANC 2.0 is warming up with Janusz.",
+          body: "Janusz is already turning the first pedals inside the next LANC. We are keeping the full story in the garage for now, but the direction is simple: smarter pre-ride guidance, cleaner decisions and a little more personality in the cockpit.",
+          tagsAria: "LANC 2.0 teaser notes",
+          tagOne: "LANC 2.0",
+          tagTwo: "Janusz",
+          tagThree: "Coming next",
+          imageAlt: "Phone showing a preview of Janusz in the LANC app",
+          caption: "First quiet signal from the next chapter."
+        },
         realRides: {
           imageAlt: "Group road ride under dramatic clouds",
           caption: "Real riding context, not stock cycling theater.",
@@ -1256,6 +1402,17 @@
           badgeTop: "Pobierz w",
           badgeBottom: "App Store",
           note: "Otwiera stronę LANC w App Store."
+        },
+        announcement: {
+          eyebrow: "Mała zapowiedź",
+          title: "LANC 2.0 z Januszem już się rozgrzewa.",
+          body: "Janusz kręci już pierwsze kilometry w kolejnej wersji LANC. Szczegóły zostawiamy jeszcze w garażu, ale kierunek jest prosty: więcej podpowiedzi przed jazdą, mniej chaosu w decyzjach i trochę więcej charakteru w aplikacji.",
+          tagsAria: "Krótka zapowiedź LANC 2.0",
+          tagOne: "LANC 2.0",
+          tagTwo: "Janusz",
+          tagThree: "Wkrótce",
+          imageAlt: "Telefon z podglądem Janusza w aplikacji LANC",
+          caption: "Pierwszy cichy sygnał z kolejnego rozdziału."
         },
         realRides: {
           imageAlt: "Grupowa jazda szosowa w zmiennej pogodzie",
