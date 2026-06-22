@@ -607,6 +607,84 @@
       line-height: 1.55;
     }
 
+    .ride-gallery {
+      padding-top: 28px;
+    }
+
+    .ride-gallery-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.16fr) minmax(300px, .84fr);
+      gap: 16px;
+    }
+
+    .ride-photo-stack {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .ride-photo {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      min-height: 270px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: #0b0d0d;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, .25);
+    }
+
+    .ride-photo.large {
+      min-height: 558px;
+    }
+
+    .ride-photo.wide {
+      grid-column: 1 / -1;
+    }
+
+    .ride-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      transition: transform .45s ease;
+    }
+
+    .ride-photo:hover img {
+      transform: scale(1.025);
+    }
+
+    .ride-photo::after {
+      position: absolute;
+      inset: auto 0 0;
+      height: 45%;
+      content: "";
+      background: linear-gradient(180deg, rgba(4, 6, 6, 0), rgba(4, 6, 6, .78));
+      pointer-events: none;
+    }
+
+    .ride-photo figcaption {
+      position: absolute;
+      z-index: 1;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      color: rgba(255, 255, 255, .9);
+      font-size: 15px;
+      font-weight: 780;
+      line-height: 1.25;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
+    }
+
+    .ride-photo.large figcaption {
+      right: auto;
+      max-width: 420px;
+      font-size: 20px;
+    }
+
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -737,8 +815,17 @@
       }
 
       .scenario-grid,
-      .feature-grid {
+      .feature-grid,
+      .ride-gallery-grid {
         grid-template-columns: 1fr;
+      }
+
+      .ride-photo-stack {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ride-photo.large {
+        min-height: 460px;
       }
 
       .scenario-card {
@@ -911,6 +998,32 @@
 
       .scenario-copy h3 {
         font-size: 27px;
+      }
+
+      .ride-gallery-grid,
+      .ride-photo-stack {
+        gap: 12px;
+      }
+
+      .ride-photo-stack {
+        grid-template-columns: 1fr;
+      }
+
+      .ride-photo,
+      .ride-photo.large {
+        min-height: 310px;
+        border-radius: 24px;
+      }
+
+      .ride-photo.large figcaption {
+        max-width: none;
+        font-size: 17px;
+      }
+
+      .ride-photo figcaption {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
       }
 
       .screenshot-rail {
@@ -1113,6 +1226,34 @@
         </div>
       </section>
 
+      <section class="ride-gallery" aria-labelledby="rides-title">
+        <div class="section-title">
+          <h2 id="rides-title" data-i18n="rides.title">Built from real rides</h2>
+          <p data-i18n="rides.body">Janusz handles the table before the start, but LANC comes from real roads, real bikes and the group rides where small decisions make the day smoother.</p>
+        </div>
+
+        <div class="ride-gallery-grid">
+          <figure class="ride-photo large">
+            <img src="assets/ride-hero.jpg" alt="Group road ride under dramatic clouds" loading="lazy" data-i18n-alt="rides.heroAlt">
+            <figcaption data-i18n="rides.heroCaption">Before the ride: plan, pressure, weather and the first calm decision.</figcaption>
+          </figure>
+          <div class="ride-photo-stack" aria-label="Real LANC ride moments" data-i18n-aria-label="rides.stackAria">
+            <figure class="ride-photo">
+              <img src="assets/forest-ride.jpg" alt="Cyclists riding through a green forest road" loading="lazy" data-i18n-alt="rides.forestAlt">
+              <figcaption data-i18n="rides.forestCaption">On the road: the decisions disappear into the ride.</figcaption>
+            </figure>
+            <figure class="ride-photo">
+              <img src="assets/bike-build-clean.jpg" alt="Black gravel bike photographed side-on against a clean wall" loading="lazy" data-i18n-alt="rides.bikeAlt">
+              <figcaption data-i18n="rides.bikeCaption">In the garage: setup still matters.</figcaption>
+            </figure>
+            <figure class="ride-photo wide">
+              <img src="assets/group-ride.jpg" alt="Cycling group riding on a sunny road" loading="lazy" data-i18n-alt="rides.groupAlt">
+              <figcaption data-i18n="rides.groupCaption">With the group: less chaos before rollout.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       <section id="features" aria-labelledby="features-title">
         <div class="section-title">
           <h2 id="features-title" data-i18n="features.title">LANC 2.0 in one system</h2>
@@ -1307,6 +1448,19 @@
           gearTitle: "Pack for the ride, not the closet.",
           gearBody: "Clothes, tools and accessories get a purpose: what to take, what to leave and what needs attention."
         },
+        rides: {
+          title: "Built from real rides",
+          body: "Janusz handles the table before the start, but LANC comes from real roads, real bikes and the group rides where small decisions make the day smoother.",
+          heroAlt: "Group road ride under dramatic clouds",
+          heroCaption: "Before the ride: plan, pressure, weather and the first calm decision.",
+          stackAria: "Real LANC ride moments",
+          forestAlt: "Cyclists riding through a green forest road",
+          forestCaption: "On the road: the decisions disappear into the ride.",
+          bikeAlt: "Black gravel bike photographed side-on against a clean wall",
+          bikeCaption: "In the garage: setup still matters.",
+          groupAlt: "Cycling group riding on a sunny road",
+          groupCaption: "With the group: less chaos before rollout."
+        },
         features: {
           title: "LANC 2.0 in one system",
           body: "The old garage is still here. The difference is that Janusz now connects it with decisions.",
@@ -1454,6 +1608,19 @@
           gearKicker: "04 / Sprzęt na stół",
           gearTitle: "Pakuj pod jazdę, nie pod szafę.",
           gearBody: "Ubrania, narzędzia i akcesoria dostają sens: co brać, co zostawić i co wymaga uwagi."
+        },
+        rides: {
+          title: "Z prawdziwych jazd",
+          body: "Janusz ogarnia stół przed startem, ale LANC wyrósł z prawdziwych tras, rowerów i ekipowych wyjść, gdzie małe decyzje potrafią uratować cały dzień.",
+          heroAlt: "Grupowa jazda szosowa pod dramatycznym niebem",
+          heroCaption: "Przed jazdą: plan, ciśnienie, pogoda i pierwsza spokojna decyzja.",
+          stackAria: "Prawdziwe momenty jazd LANC",
+          forestAlt: "Kolarze jadący przez zieloną leśną drogę",
+          forestCaption: "Na trasie: decyzje znikają w samej jeździe.",
+          bikeAlt: "Czarny rower gravelowy sfotografowany z boku przy jasnej ścianie",
+          bikeCaption: "W garażu: konfiguracja nadal ma znaczenie.",
+          groupAlt: "Grupa kolarzy jadąca słoneczną drogą",
+          groupCaption: "Z ekipą: mniej chaosu przed wyjazdem."
         },
         features: {
           title: "LANC 2.0 jako jeden system",
