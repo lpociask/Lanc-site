@@ -4,19 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="LANC is a premium cycling system for your bikes, builds, ride plans, gear, compatibility and upgrade intelligence.">
-  <title>LANC - Your Cycling System</title>
+  <meta name="description" content="LANC 2.0 is a cycling decision system with Janusz: bike verdicts, ride plans, gear choices and local insights for riders who want calmer decisions before every ride.">
+  <title>LANC 2.0 - Janusz prowadzi</title>
   <style>
     :root {
       --bg: #070809;
       --surface: #111316;
       --surface-2: #191b20;
-      --line: rgba(255, 255, 255, .10);
-      --text: #f6f2ec;
-      --muted: rgba(246, 242, 236, .66);
-      --soft: rgba(246, 242, 236, .42);
+      --line: rgba(255, 255, 255, .11);
+      --text: #f7f2ea;
+      --muted: rgba(247, 242, 234, .68);
+      --soft: rgba(247, 242, 234, .46);
+      --cream: #f7ecd9;
       --copper: #e78243;
-      --green: #2fd568;
+      --green: #8cc48d;
+      --bright-green: #2fd568;
       --blue: #45a3ff;
       --shadow: rgba(0, 0, 0, .44);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, system-ui, sans-serif;
@@ -24,7 +26,8 @@
 
     * { box-sizing: border-box; }
 
-    html {
+    html,
+    body {
       overflow-x: hidden;
     }
 
@@ -32,15 +35,22 @@
       margin: 0;
       color: var(--text);
       background:
-        radial-gradient(circle at 12% 0%, rgba(231, 130, 67, .24), transparent 30rem),
-        radial-gradient(circle at 84% 6%, rgba(69, 163, 255, .10), transparent 26rem),
-        linear-gradient(180deg, #050607 0%, var(--bg) 42%, #050607 100%);
+        linear-gradient(140deg, rgba(21, 42, 32, .58), transparent 28rem),
+        linear-gradient(320deg, rgba(75, 34, 17, .40), transparent 26rem),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .026) 0 1px, transparent 1px 24px),
+        linear-gradient(180deg, #080a0b 0%, #050607 48%, #070809 100%);
       min-height: 100vh;
-      overflow-x: hidden;
       letter-spacing: 0;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+    }
 
     .page {
       width: min(1120px, calc(100% - 32px));
@@ -55,29 +65,21 @@
       padding: 22px 0;
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-left: auto;
-    }
-
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      font-weight: 750;
-      letter-spacing: .02em;
+      font-weight: 780;
     }
 
     .mark {
       width: 42px;
       height: 42px;
-      border-radius: 15px;
       display: block;
       overflow: hidden;
-      background: #08090a;
+      border-radius: 15px;
       border: 1px solid var(--line);
+      background: #08090a;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 18px 38px var(--shadow);
     }
 
@@ -88,13 +90,20 @@
       object-fit: cover;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
     nav {
       display: flex;
       align-items: center;
       gap: 10px;
       color: var(--muted);
       font-size: 14px;
-      font-weight: 650;
+      font-weight: 680;
     }
 
     nav a {
@@ -105,7 +114,7 @@
 
     nav a:hover {
       border-color: var(--line);
-      background: rgba(255, 255, 255, .04);
+      background: rgba(255, 255, 255, .045);
       color: var(--text);
     }
 
@@ -124,13 +133,8 @@
       cursor: pointer;
       font: inherit;
       font-size: 14px;
-      font-weight: 760;
+      font-weight: 780;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
-    }
-
-    .language-toggle:hover {
-      border-color: rgba(255, 255, 255, .18);
-      background: rgba(255, 255, 255, .10);
     }
 
     .flag-emoji {
@@ -142,69 +146,53 @@
       position: relative;
       isolation: isolate;
       width: 100vw;
-      min-height: 600px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 470px);
-      gap: 56px;
+      grid-template-columns: minmax(0, 1fr) minmax(330px, 460px);
+      gap: 44px;
       align-items: center;
       margin-left: calc(50% - 50vw);
-      padding: 56px max(32px, calc((100vw - 1120px) / 2 + 16px)) 60px;
+      padding: 38px max(32px, calc((100vw - 1120px) / 2 + 16px)) 48px;
       overflow: hidden;
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .hero::before {
-      z-index: -2;
+      border-top: 1px solid rgba(255, 255, 255, .05);
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
       background:
-        linear-gradient(90deg, rgba(5, 6, 7, .94), rgba(5, 6, 7, .64) 46%, rgba(5, 6, 7, .28)),
-        linear-gradient(180deg, rgba(5, 6, 7, .26), rgba(5, 6, 7, .84)),
-        url("assets/group-ride.jpg") center / cover;
-      filter: saturate(.94);
-    }
-
-    .hero::after {
-      z-index: -1;
-      background:
-        linear-gradient(180deg, rgba(7, 8, 9, .08), rgba(7, 8, 9, .96)),
-        radial-gradient(circle at 22% 22%, rgba(231, 130, 67, .22), transparent 34rem);
+        linear-gradient(90deg, rgba(5, 6, 7, .98), rgba(5, 6, 7, .73) 52%, rgba(13, 32, 22, .48)),
+        repeating-linear-gradient(135deg, rgba(140, 196, 141, .052) 0 1px, transparent 1px 28px),
+        linear-gradient(145deg, rgba(29, 83, 44, .42), rgba(83, 38, 17, .34));
     }
 
     .hero-copy {
-      max-width: 680px;
+      max-width: 720px;
     }
 
     .eyebrow {
-      color: var(--copper);
-      font-weight: 760;
-      font-size: 14px;
       margin: 0 0 16px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 820;
+      text-transform: uppercase;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(58px, 11vw, 132px);
-      line-height: .86;
+      max-width: 720px;
+      font-size: clamp(56px, 7.4vw, 88px);
+      line-height: .92;
       letter-spacing: 0;
-      font-weight: 820;
+      font-weight: 860;
     }
 
     .subtitle {
       margin: 22px 0 0;
-      font-size: clamp(24px, 4vw, 44px);
+      max-width: 670px;
+      font-size: clamp(24px, 3.4vw, 42px);
       line-height: 1.08;
-      font-weight: 760;
+      font-weight: 780;
     }
 
     .lead {
-      margin: 22px 0 0;
-      max-width: 620px;
+      margin: 18px 0 0;
+      max-width: 640px;
       color: var(--muted);
       font-size: 19px;
       line-height: 1.55;
@@ -217,17 +205,18 @@
       margin-top: 26px;
     }
 
-    .hero-proof span {
+    .hero-proof span,
+    .tag {
       display: inline-flex;
       align-items: center;
       min-height: 34px;
       padding: 0 12px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, .13);
-      background: rgba(255, 255, 255, .07);
-      color: rgba(246, 242, 236, .86);
+      background: rgba(255, 255, 255, .065);
+      color: rgba(247, 242, 234, .86);
       font-size: 13px;
-      font-weight: 720;
+      font-weight: 760;
       backdrop-filter: blur(12px);
     }
 
@@ -235,50 +224,99 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 34px;
+      margin-top: 24px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
+      min-height: 50px;
       padding: 0 18px;
       border-radius: 999px;
-      font-weight: 750;
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, .06);
       color: var(--text);
+      font-weight: 780;
     }
 
     .button.primary {
-      color: #120c08;
-      background: var(--copper);
-      border-color: rgba(231, 130, 67, .9);
+      color: #0d130c;
+      background: var(--bright-green);
+      border-color: rgba(47, 213, 104, .88);
     }
 
-    .button.primary:hover {
-      background: #f09352;
+    .button.copper {
+      color: #130b06;
+      background: var(--copper);
+      border-color: rgba(231, 130, 67, .92);
     }
 
     .hero-visual {
       position: relative;
-      min-height: 520px;
-      display: grid;
-      align-items: center;
-      justify-items: center;
-    }
-
-    .hero-phone-wrap {
-      position: relative;
-      z-index: 1;
-      width: 100%;
+      min-height: 540px;
       display: flex;
+      align-items: center;
       justify-content: center;
     }
 
+    .phone-frame {
+      position: relative;
+      width: min(100%, 340px);
+      padding: 9px;
+      border-radius: 54px;
+      border: 1px solid rgba(255, 255, 255, .20);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .26), rgba(255, 255, 255, .06) 36%, rgba(255, 255, 255, .16)),
+        #050607;
+      box-shadow: 0 42px 80px rgba(0, 0, 0, .58);
+      transform: rotate(1.5deg);
+    }
+
+    .phone-frame img {
+      width: 100%;
+      aspect-ratio: 1179 / 2556;
+      display: block;
+      object-fit: cover;
+      border-radius: 44px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background: #050607;
+    }
+
+    .hero-stamp {
+      position: absolute;
+      left: -34px;
+      bottom: 64px;
+      width: min(260px, 70%);
+      padding: 14px 16px;
+      border-radius: 22px;
+      border: 1px solid rgba(140, 196, 141, .28);
+      background: rgba(13, 25, 18, .82);
+      box-shadow: 0 22px 46px rgba(0, 0, 0, .36);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-stamp strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--green);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .hero-stamp span {
+      color: var(--cream);
+      font-size: 16px;
+      font-weight: 760;
+      line-height: 1.25;
+    }
+
+    section {
+      padding: 52px 0;
+    }
+
     .store-spotlight {
-      padding: 6px 0 54px;
+      padding-top: 22px;
     }
 
     .store-panel {
@@ -290,9 +328,9 @@
       border-radius: 30px;
       border: 1px solid rgba(255, 255, 255, .13);
       background:
-        linear-gradient(135deg, rgba(231, 130, 67, .18), rgba(69, 163, 255, .10) 48%, rgba(255, 255, 255, .055)),
-        rgba(255, 255, 255, .045);
-      box-shadow: 0 30px 64px rgba(0, 0, 0, .30);
+        linear-gradient(135deg, rgba(47, 213, 104, .14), rgba(231, 130, 67, .12) 52%, rgba(69, 163, 255, .08)),
+        rgba(255, 255, 255, .04);
+      box-shadow: 0 30px 64px rgba(0, 0, 0, .28);
     }
 
     .store-lockup {
@@ -322,39 +360,42 @@
 
     .store-kicker {
       margin: 0 0 8px;
-      color: var(--green);
+      color: var(--bright-green);
       font-size: 13px;
       font-weight: 820;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: .96;
+      letter-spacing: 0;
     }
 
     .store-copy h2 {
-      font-size: 32px;
-      line-height: 1.05;
+      font-size: clamp(28px, 3.6vw, 40px);
     }
 
-    .store-copy p {
-      max-width: 610px;
-      margin: 10px 0 0;
+    .store-copy p,
+    .section-title p,
+    .story-lead {
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.55;
       font-size: 17px;
     }
 
-    .store-pills {
+    .store-copy p {
+      max-width: 680px;
+      margin: 10px 0 0;
+    }
+
+    .store-pills,
+    .decision-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 16px;
-    }
-
-    .store-pill {
-      padding: 8px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .10);
-      background: rgba(0, 0, 0, .18);
-      color: rgba(246, 242, 236, .78);
-      font-size: 13px;
-      font-weight: 720;
     }
 
     .store-actions {
@@ -398,362 +439,105 @@
       text-align: right;
     }
 
-    .announcement {
-      padding: 0 0 56px;
+    .janusz-section {
+      padding-top: 58px;
     }
 
-    .announcement-panel {
-      position: relative;
-      overflow: hidden;
+    .janusz-panel {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 32px;
       align-items: center;
-      padding: 28px;
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, .13);
-      background:
-        linear-gradient(135deg, rgba(47, 213, 104, .12), rgba(231, 130, 67, .11) 54%, rgba(255, 255, 255, .045)),
-        rgba(255, 255, 255, .035);
-      box-shadow: 0 30px 64px rgba(0, 0, 0, .30);
     }
 
-    .announcement-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 8% 18%, rgba(47, 213, 104, .16), transparent 20rem),
-        radial-gradient(circle at 72% 22%, rgba(69, 163, 255, .10), transparent 22rem);
-      pointer-events: none;
+    .janusz-copy {
+      padding: 12px 0;
     }
 
-    .announcement-copy,
-    .announcement-media {
-      position: relative;
-      z-index: 1;
+    .janusz-copy .story-lead {
+      margin: 22px 0 0;
+      max-width: 540px;
     }
 
-    .announcement-copy h2 {
-      max-width: 700px;
-      font-size: clamp(34px, 5vw, 62px);
-      line-height: .98;
-    }
-
-    .announcement-copy p:not(.eyebrow) {
-      max-width: 650px;
-      margin: 18px 0 0;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.56;
-    }
-
-    .announcement-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 22px;
-    }
-
-    .announcement-tags span {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .11);
-      background: rgba(0, 0, 0, .18);
-      color: rgba(246, 242, 236, .82);
-      font-size: 13px;
-      font-weight: 760;
-    }
-
-    .announcement-media {
-      min-height: 320px;
-      margin: 0;
-      overflow: hidden;
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, .12);
-      background: #070809;
-      box-shadow: 0 22px 48px rgba(0, 0, 0, .28);
-    }
-
-    .announcement-media img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .announcement-media figcaption {
-      position: absolute;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      width: fit-content;
-      max-width: calc(100% - 32px);
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .14);
-      background: rgba(7, 8, 9, .68);
-      color: rgba(246, 242, 236, .82);
-      font-size: 13px;
-      font-weight: 720;
-      backdrop-filter: blur(14px);
-    }
-
-    .story-showcase {
-      display: grid;
-      grid-template-columns: minmax(0, 1.18fr) minmax(320px, .82fr);
-      gap: 30px;
-      align-items: stretch;
-      padding: 10px 0 18px;
-    }
-
-    .story-photo {
-      position: relative;
-      min-height: 540px;
-      margin: 0;
-      overflow: hidden;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, .13);
-      background: #070809;
-      box-shadow: 0 30px 64px rgba(0, 0, 0, .34);
-    }
-
-    .story-photo img,
-    .scenario-card img,
-    .final-panel img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .story-photo::after,
-    .final-panel::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .58));
-      pointer-events: none;
-    }
-
-    .story-photo figcaption {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      z-index: 1;
-      width: fit-content;
-      max-width: calc(100% - 36px);
-      padding: 10px 13px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, .14);
-      background: rgba(7, 8, 9, .66);
-      color: rgba(246, 242, 236, .82);
-      font-size: 13px;
-      font-weight: 720;
-      backdrop-filter: blur(14px);
-    }
-
-    .story-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 28px 0;
-    }
-
-    .story-copy h2,
-    .final-copy h2 {
-      font-size: clamp(36px, 5vw, 62px);
-      line-height: .96;
-    }
-
-    .story-lead,
-    .final-copy p {
-      margin: 20px 0 0;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.58;
-    }
-
-    .story-points {
-      display: grid;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .story-point {
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, .10);
-    }
-
-    .story-point strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--copper);
-      font-size: 13px;
-      font-weight: 820;
-    }
-
-    .story-point span {
-      color: rgba(246, 242, 236, .76);
-      line-height: 1.48;
-    }
-
-    .scenario-grid {
+    .janusz-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .scenario-card {
-      overflow: hidden;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .032));
-      box-shadow: 0 24px 48px rgba(0, 0, 0, .24);
-    }
-
-    .scenario-card img {
-      height: 250px;
-      border-bottom: 1px solid rgba(255, 255, 255, .09);
-    }
-
-    .scenario-copy {
+    .decision-card,
+    .feature-card {
+      min-height: 190px;
       padding: 22px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, .11);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .032)),
+        rgba(255, 255, 255, .035);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, .22);
     }
 
-    .scenario-kicker {
+    .decision-card strong,
+    .feature-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 840;
+      text-transform: uppercase;
+    }
+
+    .decision-card h3,
+    .feature-card h3 {
       margin: 0 0 10px;
-      color: var(--copper);
-      font-size: 12px;
-      font-weight: 820;
+      font-size: 24px;
+      line-height: 1.08;
+      letter-spacing: 0;
     }
 
-    .scenario-copy h3 {
-      font-size: 25px;
-    }
-
-    .scenario-copy p {
+    .decision-card p,
+    .feature-card p {
       margin: 0;
       color: var(--muted);
       line-height: 1.52;
     }
 
-    .final-ride {
-      padding: 48px 0 60px;
-    }
-
-    .final-panel {
-      position: relative;
-      min-height: 430px;
-      overflow: hidden;
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, .13);
-      background: #070809;
-      box-shadow: 0 34px 70px rgba(0, 0, 0, .36);
-    }
-
-    .final-panel img {
-      position: absolute;
-      inset: 0;
-      object-position: center 58%;
-    }
-
-    .final-panel::after {
+    .decision-band {
+      border-block: 1px solid rgba(255, 255, 255, .07);
       background:
-        linear-gradient(90deg, rgba(5, 6, 7, .92), rgba(5, 6, 7, .48) 54%, rgba(5, 6, 7, .16)),
-        linear-gradient(180deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .62));
+        linear-gradient(135deg, rgba(14, 39, 24, .78), rgba(52, 26, 12, .54)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .035) 0 1px, transparent 1px 24px);
+      margin: 30px calc(50% - 50vw) 0;
+      padding: 54px max(32px, calc((100vw - 1120px) / 2 + 16px));
     }
 
-    .final-copy {
-      position: relative;
-      z-index: 1;
-      width: min(620px, calc(100% - 48px));
-      padding: 42px;
+    .decision-band-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr);
+      gap: 30px;
+      align-items: center;
     }
 
-    .final-copy .button {
-      margin-top: 26px;
+    .decision-band p {
+      max-width: 680px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 18px;
     }
 
-    .phone {
-      position: relative;
-      width: min(100%, 390px);
-      aspect-ratio: 9 / 19.5;
-      border-radius: 58px;
-      padding: 10px;
-      border: 1px solid rgba(255, 255, 255, .24);
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, .30), rgba(255, 255, 255, .04) 30%, rgba(255, 255, 255, .16) 100%),
-        #050607;
-      box-shadow: 0 38px 78px rgba(0, 0, 0, .62);
+    .decision-note {
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(5, 6, 7, .44);
     }
 
-    .phone::before {
-      content: "";
-      position: absolute;
-      z-index: 2;
-      top: 17px;
-      left: 50%;
-      width: 84px;
-      height: 25px;
-      transform: translateX(-50%);
-      border-radius: 999px;
-      background: #050607;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 4px 12px rgba(0, 0, 0, .38);
-      pointer-events: none;
-    }
-
-    .hero .phone {
-      width: min(100%, 312px);
-    }
-
-    .screen {
-      height: 100%;
-      border-radius: 48px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 25% 12%, rgba(231, 130, 67, .24), transparent 12rem),
-        #070809;
-      border: 1px solid rgba(255, 255, 255, .09);
-      padding: 28px 20px;
-    }
-
-    .screen.app-shot {
-      padding: 0;
-      background: #070809;
-    }
-
-    .screen.app-shot img {
-      width: 100%;
-      height: 100%;
+    .decision-note strong {
       display: block;
-      object-fit: cover;
-    }
-
-    .mock-title {
-      font-size: 28px;
-      font-weight: 820;
-      margin-bottom: 22px;
-    }
-
-    .mock-card {
-      background: rgba(255, 255, 255, .06);
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: 26px;
-      padding: 18px;
-      margin-bottom: 14px;
-    }
-
-    .mock-card strong { display: block; font-size: 20px; margin-bottom: 8px; }
-    .mock-card span { color: var(--muted); font-weight: 620; }
-
-    section {
-      padding: 42px 0;
+      margin-bottom: 10px;
+      color: var(--copper);
+      font-size: 14px;
+      text-transform: uppercase;
     }
 
     .section-title {
@@ -761,69 +545,81 @@
       align-items: end;
       justify-content: space-between;
       gap: 24px;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(32px, 5vw, 56px);
-      letter-spacing: 0;
-      line-height: 1;
+      margin-bottom: 24px;
     }
 
     .section-title p {
+      max-width: 460px;
       margin: 0;
-      max-width: 440px;
-      color: var(--muted);
-      line-height: 1.5;
     }
 
-    .grid {
+    .scenario-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
     }
 
-    .card {
-      min-height: 220px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .035));
+    .scenario-card {
+      display: grid;
+      grid-template-columns: minmax(160px, .58fr) minmax(0, .9fr);
+      gap: 22px;
+      align-items: center;
+      overflow: hidden;
+      min-height: 430px;
+      border-radius: 30px;
       border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 22px;
-      box-shadow: 0 22px 44px rgba(0, 0, 0, .22);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .032));
+      box-shadow: 0 24px 48px rgba(0, 0, 0, .24);
     }
 
-    .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(231, 130, 67, .18);
-      color: var(--copper);
-      font-size: 22px;
-      margin-bottom: 26px;
+    .scenario-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+      border-right: 1px solid rgba(255, 255, 255, .09);
     }
 
-    h3 {
+    .scenario-copy {
+      padding: 22px 22px 22px 0;
+    }
+
+    .scenario-kicker {
       margin: 0 0 10px;
-      font-size: 22px;
+      color: var(--copper);
+      font-size: 12px;
+      font-weight: 840;
+      text-transform: uppercase;
+    }
+
+    .scenario-copy h3 {
+      margin: 0 0 12px;
+      font-size: 30px;
+      line-height: 1.05;
       letter-spacing: 0;
     }
 
-    .card p {
+    .scenario-copy p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
-    .screenshots {
+    .feature-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .screenshot-rail {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 14px;
     }
 
     .screenshot-card {
+      overflow: hidden;
       border-radius: 30px;
       border: 1px solid rgba(255, 255, 255, .12);
       background: linear-gradient(180deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .03));
@@ -833,9 +629,10 @@
 
     .screenshot-card img {
       width: 100%;
-      aspect-ratio: 9 / 19.5;
+      aspect-ratio: 1179 / 2556;
       display: block;
       object-fit: cover;
+      object-position: top center;
       border-radius: 22px;
       border: 1px solid rgba(255, 255, 255, .08);
       background: #070809;
@@ -845,7 +642,53 @@
       padding: 12px 6px 4px;
       color: var(--muted);
       font-size: 14px;
-      font-weight: 720;
+      font-weight: 760;
+    }
+
+    .final-ride {
+      padding: 48px 0 64px;
+    }
+
+    .final-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, .48fr);
+      gap: 28px;
+      align-items: center;
+      overflow: hidden;
+      min-height: 440px;
+      padding: 34px;
+      border-radius: 34px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      background:
+        linear-gradient(135deg, rgba(15, 48, 28, .82), rgba(63, 30, 13, .68)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .035) 0 1px, transparent 1px 24px);
+      box-shadow: 0 34px 70px rgba(0, 0, 0, .36);
+    }
+
+    .final-copy .story-lead {
+      max-width: 610px;
+      margin: 20px 0 0;
+    }
+
+    .final-copy .button {
+      margin-top: 26px;
+    }
+
+    .final-shot {
+      width: min(100%, 280px);
+      justify-self: end;
+      padding: 8px;
+      border-radius: 46px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: #050607;
+      box-shadow: 0 28px 58px rgba(0, 0, 0, .42);
+      transform: rotate(-2deg);
+    }
+
+    .final-shot img {
+      display: block;
+      width: 100%;
+      border-radius: 38px;
     }
 
     footer {
@@ -859,108 +702,241 @@
       font-size: 14px;
     }
 
-    footer a { color: var(--muted); font-weight: 650; }
-    footer a + a { margin-left: 14px; }
-
-    @media (max-width: 860px) {
-      header { align-items: flex-start; }
-      .header-actions { align-items: flex-start; }
-      nav { flex-wrap: wrap; justify-content: flex-end; }
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 42px max(24px, calc((100vw - 1120px) / 2 + 16px)) 58px;
-        gap: 34px;
-      }
-      .hero::before {
-        background:
-          linear-gradient(180deg, rgba(5, 6, 7, .76), rgba(5, 6, 7, .72) 44%, rgba(5, 6, 7, .92)),
-          url("assets/group-ride.jpg") center / cover;
-      }
-      .hero-visual { min-height: 500px; }
-      .phone { margin: 0 auto; }
-      .store-panel { grid-template-columns: 1fr; }
-      .store-actions { align-items: flex-start; }
-      .store-note { text-align: left; }
-      .announcement-panel { grid-template-columns: 1fr; }
-      .announcement-media { min-height: 360px; }
-      .story-showcase { grid-template-columns: 1fr; }
-      .story-photo { min-height: 420px; }
-      .scenario-grid { grid-template-columns: 1fr; }
-      .grid { grid-template-columns: 1fr; }
-      .screenshots { grid-template-columns: repeat(2, 1fr); }
-      .section-title { display: block; }
-      .section-title p { margin-top: 14px; }
+    footer a {
+      color: var(--muted);
+      font-weight: 650;
     }
 
-    @media (max-width: 560px) {
-      .page { width: min(100% - 24px, 1120px); }
+    footer a + a {
+      margin-left: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .hero-stamp {
+        left: max(0px, calc(50% - 240px));
+      }
+
+      .janusz-panel,
+      .decision-band-inner,
+      .final-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .final-shot {
+        justify-self: center;
+      }
+
+      .scenario-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario-card {
+        grid-template-columns: minmax(160px, .46fr) minmax(0, 1fr);
+      }
+
+      .screenshot-rail {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+      }
+
       header {
         display: grid;
         grid-template-columns: 1fr auto;
         align-items: center;
       }
-      .header-actions { display: contents; }
+
+      .header-actions {
+        display: contents;
+      }
+
       .language-toggle {
         grid-column: 2;
         grid-row: 1;
         justify-self: end;
       }
+
       nav {
         grid-column: 1 / -1;
         grid-row: 2;
         justify-content: flex-start;
+        flex-wrap: wrap;
         margin-top: 16px;
       }
+
+      nav a {
+        padding-inline: 10px;
+      }
+
       .hero {
-        padding: 34px 24px 46px;
+        position: relative;
+        padding: 36px 24px 44px;
       }
-      .hero-proof span { width: 100%; }
-      .hero-visual { min-height: 520px; }
-      .cta-row .button { width: 100%; }
-      .phone {
-        width: min(100%, 310px);
-        border-radius: 52px;
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
       }
-      .hero .phone { width: min(100%, 310px); }
-      .phone::before {
-        top: 15px;
-        width: 78px;
-        height: 23px;
+
+      h1 {
+        font-size: clamp(54px, 17vw, 76px);
       }
-      .screen { border-radius: 42px; }
-      .store-panel { padding: 20px; border-radius: 24px; }
-      .store-lockup { align-items: flex-start; }
+
+      .subtitle {
+        font-size: 25px;
+      }
+
+      .lead {
+        font-size: 17px;
+      }
+
+      .hero-proof span,
+      .tag {
+        min-height: 32px;
+      }
+
+      .cta-row .button {
+        width: 100%;
+      }
+
+      .hero-visual {
+        position: absolute;
+        z-index: 1;
+        top: 42px;
+        right: -28px;
+        width: 170px;
+        min-height: 0;
+        opacity: .44;
+        pointer-events: none;
+      }
+
+      .phone-frame {
+        width: 100%;
+        border-radius: 48px;
+        transform: none;
+      }
+
+      .phone-frame img {
+        border-radius: 39px;
+      }
+
+      .hero-stamp {
+        display: none;
+      }
+
+      .store-panel {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .store-lockup {
+        align-items: flex-start;
+      }
+
       .store-icon {
         width: 56px;
         height: 56px;
         border-radius: 18px;
       }
-      .store-copy h2 { font-size: 26px; }
-      .store-badge { width: 100%; }
-      .announcement-panel { padding: 20px; border-radius: 24px; }
-      .announcement-copy h2 { font-size: 31px; }
-      .announcement-copy p:not(.eyebrow) { font-size: 16px; }
-      .announcement-media { min-height: 290px; border-radius: 22px; }
-      .story-photo { min-height: 360px; border-radius: 24px; }
-      .story-copy { padding: 12px 0; }
-      .scenario-card { border-radius: 24px; }
-      .scenario-card img { height: 220px; }
-      .scenario-copy { padding: 20px; }
-      .final-panel { min-height: 520px; border-radius: 24px; }
-      .final-panel::after {
-        background:
-          linear-gradient(180deg, rgba(5, 6, 7, .36), rgba(5, 6, 7, .92)),
-          linear-gradient(90deg, rgba(5, 6, 7, .65), rgba(5, 6, 7, .18));
+
+      .store-actions {
+        align-items: flex-start;
       }
-      .final-copy {
+
+      .store-badge {
         width: 100%;
-        padding: 28px 20px;
       }
-      .final-copy .button { width: 100%; }
-      .screenshots { grid-template-columns: 1fr; }
-      footer { display: block; }
-      footer div:last-child { margin-top: 14px; }
+
+      .store-note {
+        text-align: left;
+      }
+
+      section {
+        padding: 38px 0;
+      }
+
+      .janusz-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .decision-card,
+      .feature-card {
+        min-height: auto;
+        border-radius: 24px;
+      }
+
+      .decision-band {
+        padding: 42px 24px;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 14px;
+      }
+
+      .scenario-card {
+        display: block;
+        min-height: auto;
+        border-radius: 26px;
+      }
+
+      .scenario-card img {
+        height: 420px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .09);
+      }
+
+      .scenario-copy {
+        padding: 22px;
+      }
+
+      .scenario-copy h3 {
+        font-size: 27px;
+      }
+
+      .screenshot-rail {
+        grid-template-columns: 1fr;
+      }
+
+      .screenshot-card img {
+        max-height: 720px;
+      }
+
+      .final-panel {
+        min-height: auto;
+        padding: 24px;
+        border-radius: 26px;
+      }
+
+      .final-shot {
+        width: min(100%, 260px);
+      }
+
+      footer {
+        display: block;
+      }
+
+      footer div:last-child {
+        margin-top: 14px;
+      }
     }
   </style>
 </head>
@@ -974,8 +950,8 @@
       <div class="header-actions">
         <nav aria-label="Site navigation" data-i18n-aria-label="nav.aria">
           <a href="#app-store" data-i18n="nav.appStore">App Store</a>
-          <a href="#use-cases" data-i18n="nav.useCases">Use Cases</a>
-          <a href="#features" data-i18n="nav.features">Features</a>
+          <a href="#janusz" data-i18n="nav.janusz">Janusz</a>
+          <a href="#scenarios" data-i18n="nav.scenarios">Scenarios</a>
           <a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a>
           <a href="privacy.html" data-i18n="nav.privacy">Privacy Policy</a>
           <a href="support.html" data-i18n="nav.support">Support</a>
@@ -988,51 +964,47 @@
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero" id="app-store" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow" data-i18n="hero.eyebrow">Premium cycling cockpit</p>
-          <h1 id="hero-title">LANC</h1>
-          <p class="subtitle" data-i18n="hero.subtitle">Your Cycling System</p>
-          <p class="lead" data-i18n="hero.lead">
-            LANC helps you keep a thoughtful digital garage: bikes, builds, ride readiness,
-            compatibility, gear, service history, costs and upgrade intelligence in one calm system.
-          </p>
-          <div class="hero-proof" aria-label="LANC highlights" data-i18n-aria-label="hero.proofAria">
-            <span data-i18n="hero.proofOne">Bike builds</span>
-            <span data-i18n="hero.proofTwo">Ride checks</span>
-            <span data-i18n="hero.proofThree">Service and costs</span>
-            <span data-i18n="hero.proofFour">Gear kits</span>
-          </div>
+          <p class="eyebrow" data-i18n="hero.eyebrow">LANC 2.0 is live on the App Store</p>
+          <h1 id="hero-title" data-i18n="hero.title">Janusz leads.</h1>
+          <p class="subtitle" data-i18n="hero.subtitle">Cycling Decision System for bikes, rides and gear.</p>
+          <p class="lead" data-i18n="hero.lead">LANC 2.0 puts Janusz in the middle of the cockpit: he reads the garage, checks the bike, guides the ride plan, watches the gear and turns loose data into decisions you can actually use.</p>
           <div class="cta-row">
-            <a class="button primary" href="https://apps.apple.com/us/app/lanc/id6774547243" target="_blank" rel="noopener" data-i18n="hero.appStore">Download on the App Store</a>
-            <a class="button" href="support.html" data-i18n="hero.support">Get Support</a>
-            <a class="button" href="privacy.html" data-i18n="hero.privacy">Read Privacy Policy</a>
+            <a class="button primary" href="https://apps.apple.com/us/app/lanc/id6774547243" target="_blank" rel="noopener" data-i18n="hero.appStore">Download LANC 2.0</a>
+            <a class="button" href="#janusz" data-i18n="hero.janusz">Meet Janusz</a>
+          </div>
+          <div class="hero-proof" aria-label="LANC 2.0 highlights" data-i18n-aria-label="hero.proofAria">
+            <span data-i18n="hero.proofOne">Janusz verdicts</span>
+            <span data-i18n="hero.proofTwo">Ride Plan</span>
+            <span data-i18n="hero.proofThree">Gear table</span>
+            <span data-i18n="hero.proofFour">Local insights</span>
           </div>
         </div>
 
         <div class="hero-visual">
-          <div class="hero-phone-wrap">
-            <div class="phone" aria-label="LANC app screenshot" data-i18n-aria-label="hero.phoneAria">
-              <div class="screen app-shot">
-                <img src="screenshot-garage.jpg" alt="LANC Garage screen showing bikes and readiness cards" data-i18n-alt="hero.screenshotAlt">
-              </div>
-            </div>
+          <figure class="phone-frame" aria-label="LANC 2.0 Janusz screen" data-i18n-aria-label="hero.phoneAria">
+            <img src="assets/lanc-2-janusz-home.jpg" alt="LANC 2.0 home screen with Janusz asking what to handle today" data-i18n-alt="hero.screenshotAlt">
+          </figure>
+          <div class="hero-stamp">
+            <strong data-i18n="hero.stampKicker">Janusz Workshop</strong>
+            <span data-i18n="hero.stampBody">What are we handling today?</span>
           </div>
         </div>
       </section>
 
-      <section class="store-spotlight" id="app-store" aria-labelledby="app-store-title">
+      <section class="store-spotlight" aria-labelledby="app-store-title">
         <div class="store-panel">
           <div class="store-lockup">
             <span class="store-icon" aria-hidden="true"><img src="lanc-icon.png" alt=""></span>
             <div class="store-copy">
-              <p class="store-kicker" data-i18n="store.kicker">Available now</p>
-              <h2 id="app-store-title" data-i18n="store.title">LANC is on the App Store.</h2>
-              <p data-i18n="store.body">Download the iPhone app and keep bikes, ride plans, gear and service decisions in one calm cycling system.</p>
+              <p class="store-kicker" data-i18n="store.kicker">Version 2.0 available now</p>
+              <h2 id="app-store-title" data-i18n="store.title">Janusz is no longer a preview.</h2>
+              <p data-i18n="store.body">Download the new LANC and let Janusz help with bike verdicts, route choices, pressure, gear and the small decisions that used to live in notes.</p>
               <div class="store-pills" aria-label="App highlights" data-i18n-aria-label="store.pillsAria">
-                <span class="store-pill" data-i18n="store.pillOne">iPhone</span>
-                <span class="store-pill" data-i18n="store.pillTwo">Local-first</span>
-                <span class="store-pill" data-i18n="store.pillThree">Optional Strava</span>
+                <span class="tag" data-i18n="store.pillOne">Janusz inside</span>
+                <span class="tag" data-i18n="store.pillTwo">Works locally</span>
+                <span class="tag" data-i18n="store.pillThree">Strava optional</span>
               </div>
             </div>
           </div>
@@ -1046,90 +1018,95 @@
         </div>
       </section>
 
-      <section class="announcement" id="lanc-2" aria-labelledby="announcement-title">
-        <div class="announcement-panel">
-          <div class="announcement-copy">
-            <p class="eyebrow" data-i18n="announcement.eyebrow">Small preview</p>
-            <h2 id="announcement-title" data-i18n="announcement.title">LANC 2.0 is warming up with Janusz.</h2>
-            <p data-i18n="announcement.body">Janusz is already turning the first pedals inside the next LANC. We are keeping the full story in the garage for now, but the direction is simple: smarter pre-ride guidance, cleaner decisions and a little more personality in the cockpit.</p>
-            <div class="announcement-tags" aria-label="LANC 2.0 teaser notes" data-i18n-aria-label="announcement.tagsAria">
-              <span data-i18n="announcement.tagOne">LANC 2.0</span>
-              <span data-i18n="announcement.tagTwo">Janusz</span>
-              <span data-i18n="announcement.tagThree">Coming next</span>
-            </div>
+      <section class="janusz-section" id="janusz" aria-labelledby="janusz-title">
+        <div class="janusz-panel">
+          <div class="janusz-copy">
+            <p class="eyebrow" data-i18n="janusz.eyebrow">Janusz is the new center</p>
+            <h2 id="janusz-title" data-i18n="janusz.title">Not another module. Janusz.</h2>
+            <p class="story-lead" data-i18n="janusz.body">He brings the bike, route, weather, costs, upgrades and gear into one practical conversation. Less digging through screens. More: here is what matters before the ride.</p>
           </div>
-          <figure class="announcement-media">
-            <img src="assets/janusz-lanc-2.jpg" alt="Phone showing a preview of Janusz in the LANC app" loading="lazy" data-i18n-alt="announcement.imageAlt">
-            <figcaption data-i18n="announcement.caption">First quiet signal from the next chapter.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section id="real-rides" aria-labelledby="real-rides-title">
-        <div class="story-showcase">
-          <figure class="story-photo">
-            <img src="assets/ride-hero.jpg" alt="Group road ride under dramatic clouds" loading="lazy" data-i18n-alt="realRides.imageAlt">
-            <figcaption data-i18n="realRides.caption">Real riding context, not stock cycling theater.</figcaption>
-          </figure>
-          <div class="story-copy">
-            <p class="eyebrow" data-i18n="realRides.eyebrow">Real rides, real decisions</p>
-            <h2 id="real-rides-title" data-i18n="realRides.title">LANC belongs between the garage and the road.</h2>
-            <p class="story-lead" data-i18n="realRides.body">It turns the small decisions around every ride into one calm flow: choose the bike, check the build, pack the kit, understand the risk and learn what actually made the setup better.</p>
-            <div class="story-points">
-              <div class="story-point">
-                <strong data-i18n="realRides.pointOneTitle">Before</strong>
-                <span data-i18n="realRides.pointOneBody">Ride Plan turns weather, pressure and gear gaps into a short checklist.</span>
-              </div>
-              <div class="story-point">
-                <strong data-i18n="realRides.pointTwoTitle">During the season</strong>
-                <span data-i18n="realRides.pointTwoBody">Garage keeps every bike, component, wheelset and service entry in context.</span>
-              </div>
-              <div class="story-point">
-                <strong data-i18n="realRides.pointThreeTitle">After</strong>
-                <span data-i18n="realRides.pointThreeBody">Analytics and upgrade history show what changed, what cost money and what was worth it.</span>
-              </div>
-            </div>
+          <div class="janusz-grid">
+            <article class="decision-card">
+              <strong data-i18n="janusz.cardOneKicker">Bike verdict</strong>
+              <h3 data-i18n="janusz.cardOneTitle">Is this setup healthy?</h3>
+              <p data-i18n="janusz.cardOneBody">Janusz scores the bike and explains what is solid, missing or worth checking next.</p>
+            </article>
+            <article class="decision-card">
+              <strong data-i18n="janusz.cardTwoKicker">Ride Plan</strong>
+              <h3 data-i18n="janusz.cardTwoTitle">Calm start.</h3>
+              <p data-i18n="janusz.cardTwoBody">Route type, weather and pressure become a simple pre-ride decision.</p>
+            </article>
+            <article class="decision-card">
+              <strong data-i18n="janusz.cardThreeKicker">Insights</strong>
+              <h3 data-i18n="janusz.cardThreeTitle">Data with a point.</h3>
+              <p data-i18n="janusz.cardThreeBody">Local history already works. Strava adds ride context when you want it.</p>
+            </article>
+            <article class="decision-card">
+              <strong data-i18n="janusz.cardFourKicker">Gear</strong>
+              <h3 data-i18n="janusz.cardFourTitle">Jacket will not pack itself.</h3>
+              <p data-i18n="janusz.cardFourBody">Put gear on the table and Janusz tells you what rides, what stays and what is tired.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="use-cases" aria-labelledby="use-cases-title">
+      <section class="decision-band" aria-labelledby="decision-title">
+        <div class="decision-band-inner">
+          <div>
+            <p class="eyebrow" data-i18n="decision.eyebrow">On Janusz's table</p>
+            <h2 id="decision-title" data-i18n="decision.title">Choose what lands on the table. Janusz gives the verdict.</h2>
+            <p data-i18n="decision.body">Bike, route, weather, pressure, clothing, tools, accessories, service and costs. LANC 2.0 turns scattered cycling details into one decision layer before the ride.</p>
+          </div>
+          <div class="decision-note">
+            <strong data-i18n="decision.noteKicker">Tone of the app</strong>
+            <p data-i18n="decision.noteBody">Plain language, a little character and practical advice. No spreadsheet theater when you just want to ride.</p>
+            <div class="decision-tags" aria-label="Janusz decision areas" data-i18n-aria-label="decision.tagsAria">
+              <span class="tag" data-i18n="decision.tagOne">Bike</span>
+              <span class="tag" data-i18n="decision.tagTwo">Route</span>
+              <span class="tag" data-i18n="decision.tagThree">Gear</span>
+              <span class="tag" data-i18n="decision.tagFour">Data</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scenarios" aria-labelledby="scenarios-title">
         <div class="section-title">
-          <h2 id="use-cases-title" data-i18n="useCases.title">Real scenarios for every ride</h2>
-          <p data-i18n="useCases.body">A few concrete moments where LANC replaces loose notes, memory and pre-ride guessing.</p>
+          <h2 id="scenarios-title" data-i18n="scenarios.title">What Janusz handles</h2>
+          <p data-i18n="scenarios.body">The new version is built around real moments from riding: before you leave, while you maintain the bike and when you decide what actually helped.</p>
         </div>
 
         <div class="scenario-grid">
           <article class="scenario-card">
-            <img src="assets/night-safety.jpg" alt="Bike with front and rear lights at night" loading="lazy" data-i18n-alt="useCases.preRideAlt">
+            <img src="assets/lanc-2-ride-plan.jpg" alt="LANC 2.0 Ride Plan screen with Janusz and route checklist" loading="lazy" data-i18n-alt="scenarios.planAlt">
             <div class="scenario-copy">
-              <p class="scenario-kicker" data-i18n="useCases.preRideKicker">01 / Before the ride</p>
-              <h3 data-i18n="useCases.preRideTitle">Leave with the right setup</h3>
-              <p data-i18n="useCases.preRideBody">Pick the bike, pressure, layers, lights and repair kit before the ride starts.</p>
+              <p class="scenario-kicker" data-i18n="scenarios.planKicker">01 / Route and weather</p>
+              <h3 data-i18n="scenarios.planTitle">A calmer start.</h3>
+              <p data-i18n="scenarios.planBody">Pick the ride type and conditions. LANC turns pressure, checklist and risk into something you can act on.</p>
             </div>
           </article>
           <article class="scenario-card">
-            <img src="assets/bike-build-clean.jpg" alt="Black road bike side profile against a bright wall" loading="lazy" data-i18n-alt="useCases.buildAlt">
+            <img src="assets/lanc-2-bike-verdict.jpg" alt="LANC 2.0 bike verdict screen for Pinarello Grevil F7" loading="lazy" data-i18n-alt="scenarios.bikeAlt">
             <div class="scenario-copy">
-              <p class="scenario-kicker" data-i18n="useCases.buildKicker">02 / Bike passport</p>
-              <h3 data-i18n="useCases.buildTitle">Keep the build honest</h3>
-              <p data-i18n="useCases.buildBody">Track components, wheels, tires, drivetrain standards and service history in one bike passport.</p>
+              <p class="scenario-kicker" data-i18n="scenarios.bikeKicker">02 / Bike verdict</p>
+              <h3 data-i18n="scenarios.bikeTitle">A score that says why.</h3>
+              <p data-i18n="scenarios.bikeBody">Janusz explains the bike condition in human terms: build quality, service, costs and what is next.</p>
             </div>
           </article>
           <article class="scenario-card">
-            <img src="assets/bike-setup.jpg" alt="Top view of a bike with bags and bottles" loading="lazy" data-i18n-alt="useCases.gearAlt">
+            <img src="assets/lanc-2-insights.jpg" alt="LANC 2.0 insights screen with Janusz commenting on data" loading="lazy" data-i18n-alt="scenarios.insightsAlt">
             <div class="scenario-copy">
-              <p class="scenario-kicker" data-i18n="useCases.gearKicker">03 / Gear and kits</p>
-              <h3 data-i18n="useCases.gearTitle">Know what to pack</h3>
-              <p data-i18n="useCases.gearBody">Gear and kits make weather, ride type, batteries and consumables visible before they become a problem.</p>
+              <p class="scenario-kicker" data-i18n="scenarios.insightsKicker">03 / Data verdict</p>
+              <h3 data-i18n="scenarios.insightsTitle">Expensive is not always smart.</h3>
+              <p data-i18n="scenarios.insightsBody">Costs, upgrades and riding context stop being loose facts and start becoming a decision.</p>
             </div>
           </article>
           <article class="scenario-card">
-            <img src="assets/group-ride.jpg" alt="Cycling group riding on a road" loading="lazy" data-i18n-alt="useCases.upgradeAlt">
+            <img src="assets/lanc-2-gear.jpg" alt="LANC 2.0 gear screen with Janusz and cycling clothing" loading="lazy" data-i18n-alt="scenarios.gearAlt">
             <div class="scenario-copy">
-              <p class="scenario-kicker" data-i18n="useCases.upgradeKicker">04 / Upgrade value</p>
-              <h3 data-i18n="useCases.upgradeTitle">Make upgrades explain themselves</h3>
-              <p data-i18n="useCases.upgradeBody">Compare costs, changes and ride context so an upgrade becomes evidence, not a guess.</p>
+              <p class="scenario-kicker" data-i18n="scenarios.gearKicker">04 / Gear table</p>
+              <h3 data-i18n="scenarios.gearTitle">Pack for the ride, not the closet.</h3>
+              <p data-i18n="scenarios.gearBody">Clothes, tools and accessories get a purpose: what to take, what to leave and what needs attention.</p>
             </div>
           </article>
         </div>
@@ -1137,65 +1114,69 @@
 
       <section id="features" aria-labelledby="features-title">
         <div class="section-title">
-          <h2 id="features-title" data-i18n="features.title">Built around the bike</h2>
-          <p data-i18n="features.body">Each module has a clear role: facts in the garage, decisions in Ride Plan and interpretation in Analytics.</p>
+          <h2 id="features-title" data-i18n="features.title">LANC 2.0 in one system</h2>
+          <p data-i18n="features.body">The old garage is still here. The difference is that Janusz now connects it with decisions.</p>
         </div>
 
-        <div class="grid">
-          <article class="card">
-            <div class="icon">⌂</div>
-            <h3 data-i18n="features.garageTitle">Garage</h3>
-            <p data-i18n="features.garageBody">Your bikes, components, service records, costs, build history and wheelset profiles.</p>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <strong data-i18n="features.oneKicker">Garage</strong>
+            <h3 data-i18n="features.oneTitle">The bike has memory.</h3>
+            <p data-i18n="features.oneBody">Components, wheelsets, service, costs and readiness sit together in one bike story.</p>
           </article>
-          <article class="card">
-            <div class="icon">▱</div>
-            <h3 data-i18n="features.rideTitle">Ride Plan</h3>
-            <p data-i18n="features.rideBody">A calm pre-ride decision center for conditions, pressure, risks and the right gear kit.</p>
+          <article class="feature-card">
+            <strong data-i18n="features.twoKicker">Plan</strong>
+            <h3 data-i18n="features.twoTitle">Before the ride matters.</h3>
+            <p data-i18n="features.twoBody">Weather, route, pressure and gear become one calm preparation flow.</p>
           </article>
-          <article class="card">
-            <div class="icon">↗</div>
-            <h3 data-i18n="features.upgradeTitle">Upgrade Intelligence</h3>
-            <p data-i18n="features.upgradeBody">Understand what changed in your build and whether upgrades were worth it over time.</p>
+          <article class="feature-card">
+            <strong data-i18n="features.threeKicker">Insights</strong>
+            <h3 data-i18n="features.threeTitle">Less guessing.</h3>
+            <p data-i18n="features.threeBody">Local history works on its own. Strava can add deeper ride context when connected.</p>
           </article>
-          <article class="card">
-            <div class="icon">✓</div>
-            <h3 data-i18n="features.compatibilityTitle">Compatibility</h3>
-            <p data-i18n="features.compatibilityBody">Check drivetrain, brake, axle, freehub and tire standards before changes become expensive.</p>
+          <article class="feature-card">
+            <strong data-i18n="features.fourKicker">Gear</strong>
+            <h3 data-i18n="features.fourTitle">The kit has a job.</h3>
+            <p data-i18n="features.fourBody">Clothing, tools, accessories, batteries and consumables become part of the ride decision.</p>
           </article>
-          <article class="card">
-            <div class="icon">▣</div>
-            <h3 data-i18n="features.gearTitle">Gear</h3>
-            <p data-i18n="features.gearBody">A premium gear wardrobe with kits, weather fit, condition, batteries and consumables.</p>
+          <article class="feature-card">
+            <strong data-i18n="features.fiveKicker">Janusz</strong>
+            <h3 data-i18n="features.fiveTitle">Advice with character.</h3>
+            <p data-i18n="features.fiveBody">Short verdicts, practical language and enough personality to make the app feel alive.</p>
           </article>
-          <article class="card">
-            <div class="icon">∿</div>
-            <h3 data-i18n="features.analyticsTitle">Analytics</h3>
-            <p data-i18n="features.analyticsBody">Local insights work without Strava; optional Strava data unlocks ride trends and deeper context.</p>
+          <article class="feature-card">
+            <strong data-i18n="features.sixKicker">Control</strong>
+            <h3 data-i18n="features.sixTitle">Your data, your pace.</h3>
+            <p data-i18n="features.sixBody">LANC keeps core decisions local and makes external connections optional.</p>
           </article>
         </div>
       </section>
 
       <section id="screenshots" aria-labelledby="screenshots-title">
         <div class="section-title">
-          <h2 id="screenshots-title" data-i18n="screenshots.title">Screenshots</h2>
-          <p data-i18n="screenshots.body">A first look at the calm cockpit: Garage, Ride Plan, Bike Passport and Gear wardrobe.</p>
+          <h2 id="screenshots-title" data-i18n="screenshots.title">Screens from LANC 2.0</h2>
+          <p data-i18n="screenshots.body">Janusz Workshop, bike verdicts, ride plan, insights and gear in the new production version.</p>
         </div>
 
-        <div class="screenshots">
+        <div class="screenshot-rail">
           <figure class="screenshot-card">
-            <img src="screenshot-garage.jpg" alt="LANC Garage screen" data-i18n-alt="screenshots.garageAlt">
-            <figcaption data-i18n="screenshots.garageCaption">Garage</figcaption>
+            <img src="assets/lanc-2-janusz-home.jpg" alt="LANC 2.0 Janusz Workshop home screen" loading="lazy" data-i18n-alt="screenshots.homeAlt">
+            <figcaption data-i18n="screenshots.homeCaption">Janusz Workshop</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img src="screenshot-plan.jpg" alt="LANC Ride Plan screen" data-i18n-alt="screenshots.planAlt">
+            <img src="assets/lanc-2-bike-verdict.jpg" alt="LANC 2.0 bike verdict screen" loading="lazy" data-i18n-alt="screenshots.bikeAlt">
+            <figcaption data-i18n="screenshots.bikeCaption">Bike verdict</figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <img src="assets/lanc-2-ride-plan.jpg" alt="LANC 2.0 ride plan screen" loading="lazy" data-i18n-alt="screenshots.planAlt">
             <figcaption data-i18n="screenshots.planCaption">Ride Plan</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img src="screenshot-bike.jpg" alt="LANC Bike Passport screen" data-i18n-alt="screenshots.bikeAlt">
-            <figcaption data-i18n="screenshots.bikeCaption">Bike Passport</figcaption>
+            <img src="assets/lanc-2-insights.jpg" alt="LANC 2.0 insights screen" loading="lazy" data-i18n-alt="screenshots.insightsAlt">
+            <figcaption data-i18n="screenshots.insightsCaption">Insights</figcaption>
           </figure>
           <figure class="screenshot-card">
-            <img src="screenshot-gear.jpg" alt="LANC Gear wardrobe screen" data-i18n-alt="screenshots.gearAlt">
+            <img src="assets/lanc-2-gear.jpg" alt="LANC 2.0 gear screen" loading="lazy" data-i18n-alt="screenshots.gearAlt">
             <figcaption data-i18n="screenshots.gearCaption">Gear</figcaption>
           </figure>
         </div>
@@ -1203,13 +1184,15 @@
 
       <section class="final-ride" aria-labelledby="final-ride-title">
         <div class="final-panel">
-          <img src="assets/forest-ride.jpg" alt="Cyclists riding into a forest road" loading="lazy" data-i18n-alt="finalRide.imageAlt">
           <div class="final-copy">
-            <p class="eyebrow" data-i18n="finalRide.eyebrow">Built for riders who actually ride</p>
-            <h2 id="final-ride-title" data-i18n="finalRide.title">Download LANC and turn your bikes into a system.</h2>
-            <p data-i18n="finalRide.body">A calmer garage, sharper ride checks and fewer random notes before the next ride.</p>
-            <a class="button primary" href="https://apps.apple.com/us/app/lanc/id6774547243" target="_blank" rel="noopener" data-i18n="finalRide.button">Get LANC on the App Store</a>
+            <p class="eyebrow" data-i18n="finalRide.eyebrow">LANC 2.0 is ready</p>
+            <h2 id="final-ride-title" data-i18n="finalRide.title">Put your bike on Janusz's table.</h2>
+            <p class="story-lead" data-i18n="finalRide.body">Download the new LANC, choose the bike, set the ride and let Janusz turn the chaos into a verdict before you clip in.</p>
+            <a class="button primary" href="https://apps.apple.com/us/app/lanc/id6774547243" target="_blank" rel="noopener" data-i18n="finalRide.button">Get LANC 2.0 on the App Store</a>
           </div>
+          <figure class="final-shot" aria-label="LANC 2.0 gear screen" data-i18n-aria-label="finalRide.phoneAria">
+            <img src="assets/lanc-2-gear.jpg" alt="LANC 2.0 gear screen with Janusz" loading="lazy" data-i18n-alt="finalRide.imageAlt">
+          </figure>
         </div>
       </section>
     </main>
@@ -1222,12 +1205,13 @@
       </div>
     </footer>
   </div>
+
   <script>
     const translations = {
       en: {
         meta: {
-          title: "LANC - Your Cycling System",
-          description: "LANC is a premium cycling system for your bikes, builds, ride plans, gear, compatibility and upgrade intelligence."
+          title: "LANC 2.0 - Janusz leads the ride",
+          description: "LANC 2.0 is a cycling decision system with Janusz: bike verdicts, ride plans, gear choices and local insights for riders who want calmer decisions before every ride."
         },
         language: {
           aria: "Switch to Polish",
@@ -1237,118 +1221,134 @@
         nav: {
           aria: "Site navigation",
           appStore: "App Store",
-          useCases: "Use Cases",
-          features: "Features",
+          janusz: "Janusz",
+          scenarios: "Scenarios",
           screenshots: "Screenshots",
           privacy: "Privacy Policy",
           support: "Support"
         },
         hero: {
-          eyebrow: "Premium cycling cockpit",
-          subtitle: "Your Cycling System",
-          lead: "LANC helps you keep a thoughtful digital garage: bikes, builds, ride readiness, compatibility, gear, service history, costs and upgrade intelligence in one calm system.",
-          proofAria: "LANC highlights",
-          proofOne: "Bike builds",
-          proofTwo: "Ride checks",
-          proofThree: "Service and costs",
-          proofFour: "Gear kits",
-          appStore: "Download on the App Store",
-          support: "Get Support",
-          privacy: "Read Privacy Policy",
-          phoneAria: "LANC app screenshot",
-          screenshotAlt: "LANC Garage screen showing bikes and readiness cards"
+          eyebrow: "LANC 2.0 is live on the App Store",
+          title: "Janusz leads.",
+          subtitle: "Cycling Decision System for bikes, rides and gear.",
+          lead: "LANC 2.0 puts Janusz in the middle of the cockpit: he reads the garage, checks the bike, guides the ride plan, watches the gear and turns loose data into decisions you can actually use.",
+          proofAria: "LANC 2.0 highlights",
+          proofOne: "Janusz verdicts",
+          proofTwo: "Ride Plan",
+          proofThree: "Gear table",
+          proofFour: "Local insights",
+          appStore: "Download LANC 2.0",
+          janusz: "Meet Janusz",
+          phoneAria: "LANC 2.0 Janusz screen",
+          screenshotAlt: "LANC 2.0 home screen with Janusz asking what to handle today",
+          stampKicker: "Janusz Workshop",
+          stampBody: "What are we handling today?"
         },
         store: {
-          kicker: "Available now",
-          title: "LANC is on the App Store.",
-          body: "Download the iPhone app and keep bikes, ride plans, gear and service decisions in one calm cycling system.",
+          kicker: "Version 2.0 available now",
+          title: "Janusz is no longer a preview.",
+          body: "Download the new LANC and let Janusz help with bike verdicts, route choices, pressure, gear and the small decisions that used to live in notes.",
           pillsAria: "App highlights",
-          pillOne: "iPhone",
-          pillTwo: "Local-first",
-          pillThree: "Optional Strava",
+          pillOne: "Janusz inside",
+          pillTwo: "Works locally",
+          pillThree: "Strava optional",
           badgeAria: "Download LANC on the App Store",
           badgeTop: "Download on the",
           badgeBottom: "App Store",
           note: "Opens the LANC listing in the App Store."
         },
-        announcement: {
-          eyebrow: "Small preview",
-          title: "LANC 2.0 is warming up with Janusz.",
-          body: "Janusz is already turning the first pedals inside the next LANC. We are keeping the full story in the garage for now, but the direction is simple: smarter pre-ride guidance, cleaner decisions and a little more personality in the cockpit.",
-          tagsAria: "LANC 2.0 teaser notes",
-          tagOne: "LANC 2.0",
-          tagTwo: "Janusz",
-          tagThree: "Coming next",
-          imageAlt: "Phone showing a preview of Janusz in the LANC app",
-          caption: "First quiet signal from the next chapter."
+        janusz: {
+          eyebrow: "Janusz is the new center",
+          title: "Not another module. Janusz.",
+          body: "He brings the bike, route, weather, costs, upgrades and gear into one practical conversation. Less digging through screens. More: here is what matters before the ride.",
+          cardOneKicker: "Bike verdict",
+          cardOneTitle: "Is this setup healthy?",
+          cardOneBody: "Janusz scores the bike and explains what is solid, missing or worth checking next.",
+          cardTwoKicker: "Ride Plan",
+          cardTwoTitle: "Calm start.",
+          cardTwoBody: "Route type, weather and pressure become a simple pre-ride decision.",
+          cardThreeKicker: "Insights",
+          cardThreeTitle: "Data with a point.",
+          cardThreeBody: "Local history already works. Strava adds ride context when you want it.",
+          cardFourKicker: "Gear",
+          cardFourTitle: "Jacket will not pack itself.",
+          cardFourBody: "Put gear on the table and Janusz tells you what rides, what stays and what is tired."
         },
-        realRides: {
-          imageAlt: "Group road ride under dramatic clouds",
-          caption: "Real riding context, not stock cycling theater.",
-          eyebrow: "Real rides, real decisions",
-          title: "LANC belongs between the garage and the road.",
-          body: "It turns the small decisions around every ride into one calm flow: choose the bike, check the build, pack the kit, understand the risk and learn what actually made the setup better.",
-          pointOneTitle: "Before",
-          pointOneBody: "Ride Plan turns weather, pressure and gear gaps into a short checklist.",
-          pointTwoTitle: "During the season",
-          pointTwoBody: "Garage keeps every bike, component, wheelset and service entry in context.",
-          pointThreeTitle: "After",
-          pointThreeBody: "Analytics and upgrade history show what changed, what cost money and what was worth it."
+        decision: {
+          eyebrow: "On Janusz's table",
+          title: "Choose what lands on the table. Janusz gives the verdict.",
+          body: "Bike, route, weather, pressure, clothing, tools, accessories, service and costs. LANC 2.0 turns scattered cycling details into one decision layer before the ride.",
+          noteKicker: "Tone of the app",
+          noteBody: "Plain language, a little character and practical advice. No spreadsheet theater when you just want to ride.",
+          tagsAria: "Janusz decision areas",
+          tagOne: "Bike",
+          tagTwo: "Route",
+          tagThree: "Gear",
+          tagFour: "Data"
         },
-        useCases: {
-          title: "Real scenarios for every ride",
-          body: "A few concrete moments where LANC replaces loose notes, memory and pre-ride guessing.",
-          preRideAlt: "Bike with front and rear lights at night",
-          preRideKicker: "01 / Before the ride",
-          preRideTitle: "Leave with the right setup",
-          preRideBody: "Pick the bike, pressure, layers, lights and repair kit before the ride starts.",
-          buildAlt: "Black road bike side profile against a bright wall",
-          buildKicker: "02 / Bike passport",
-          buildTitle: "Keep the build honest",
-          buildBody: "Track components, wheels, tires, drivetrain standards and service history in one bike passport.",
-          gearAlt: "Top view of a bike with bags and bottles",
-          gearKicker: "03 / Gear and kits",
-          gearTitle: "Know what to pack",
-          gearBody: "Gear and kits make weather, ride type, batteries and consumables visible before they become a problem.",
-          upgradeAlt: "Cycling group riding on a road",
-          upgradeKicker: "04 / Upgrade value",
-          upgradeTitle: "Make upgrades explain themselves",
-          upgradeBody: "Compare costs, changes and ride context so an upgrade becomes evidence, not a guess."
+        scenarios: {
+          title: "What Janusz handles",
+          body: "The new version is built around real moments from riding: before you leave, while you maintain the bike and when you decide what actually helped.",
+          planAlt: "LANC 2.0 Ride Plan screen with Janusz and route checklist",
+          planKicker: "01 / Route and weather",
+          planTitle: "A calmer start.",
+          planBody: "Pick the ride type and conditions. LANC turns pressure, checklist and risk into something you can act on.",
+          bikeAlt: "LANC 2.0 bike verdict screen for Pinarello Grevil F7",
+          bikeKicker: "02 / Bike verdict",
+          bikeTitle: "A score that says why.",
+          bikeBody: "Janusz explains the bike condition in human terms: build quality, service, costs and what is next.",
+          insightsAlt: "LANC 2.0 insights screen with Janusz commenting on data",
+          insightsKicker: "03 / Data verdict",
+          insightsTitle: "Expensive is not always smart.",
+          insightsBody: "Costs, upgrades and riding context stop being loose facts and start becoming a decision.",
+          gearAlt: "LANC 2.0 gear screen with Janusz and cycling clothing",
+          gearKicker: "04 / Gear table",
+          gearTitle: "Pack for the ride, not the closet.",
+          gearBody: "Clothes, tools and accessories get a purpose: what to take, what to leave and what needs attention."
         },
         features: {
-          title: "Built around the bike",
-          body: "Each module has a clear role: facts in the garage, decisions in Ride Plan and interpretation in Analytics.",
-          garageTitle: "Garage",
-          garageBody: "Your bikes, components, service records, costs, build history and wheelset profiles.",
-          rideTitle: "Ride Plan",
-          rideBody: "A calm pre-ride decision center for conditions, pressure, risks and the right gear kit.",
-          upgradeTitle: "Upgrade Intelligence",
-          upgradeBody: "Understand what changed in your build and whether upgrades were worth it over time.",
-          compatibilityTitle: "Compatibility",
-          compatibilityBody: "Check drivetrain, brake, axle, freehub and tire standards before changes become expensive.",
-          gearTitle: "Gear",
-          gearBody: "A premium gear wardrobe with kits, weather fit, condition, batteries and consumables.",
-          analyticsTitle: "Analytics",
-          analyticsBody: "Local insights work without Strava; optional Strava data unlocks ride trends and deeper context."
+          title: "LANC 2.0 in one system",
+          body: "The old garage is still here. The difference is that Janusz now connects it with decisions.",
+          oneKicker: "Garage",
+          oneTitle: "The bike has memory.",
+          oneBody: "Components, wheelsets, service, costs and readiness sit together in one bike story.",
+          twoKicker: "Plan",
+          twoTitle: "Before the ride matters.",
+          twoBody: "Weather, route, pressure and gear become one calm preparation flow.",
+          threeKicker: "Insights",
+          threeTitle: "Less guessing.",
+          threeBody: "Local history works on its own. Strava can add deeper ride context when connected.",
+          fourKicker: "Gear",
+          fourTitle: "The kit has a job.",
+          fourBody: "Clothing, tools, accessories, batteries and consumables become part of the ride decision.",
+          fiveKicker: "Janusz",
+          fiveTitle: "Advice with character.",
+          fiveBody: "Short verdicts, practical language and enough personality to make the app feel alive.",
+          sixKicker: "Control",
+          sixTitle: "Your data, your pace.",
+          sixBody: "LANC keeps core decisions local and makes external connections optional."
         },
         screenshots: {
-          title: "Screenshots",
-          body: "A first look at the calm cockpit: Garage, Ride Plan, Bike Passport and Gear wardrobe.",
-          garageAlt: "LANC Garage screen",
-          garageCaption: "Garage",
-          planAlt: "LANC Ride Plan screen",
+          title: "Screens from LANC 2.0",
+          body: "Janusz Workshop, bike verdicts, ride plan, insights and gear in the new production version.",
+          homeAlt: "LANC 2.0 Janusz Workshop home screen",
+          homeCaption: "Janusz Workshop",
+          bikeAlt: "LANC 2.0 bike verdict screen",
+          bikeCaption: "Bike verdict",
+          planAlt: "LANC 2.0 ride plan screen",
           planCaption: "Ride Plan",
-          bikeAlt: "LANC Bike Passport screen",
-          bikeCaption: "Bike Passport",
-          gearAlt: "LANC Gear wardrobe screen",
+          insightsAlt: "LANC 2.0 insights screen",
+          insightsCaption: "Insights",
+          gearAlt: "LANC 2.0 gear screen",
           gearCaption: "Gear"
         },
         finalRide: {
-          imageAlt: "Cyclists riding into a forest road",
-          eyebrow: "Built for riders who actually ride",
-          title: "Download LANC and turn your bikes into a system.",
-          body: "A calmer garage, sharper ride checks and fewer random notes before the next ride.",
-          button: "Get LANC on the App Store"
+          eyebrow: "LANC 2.0 is ready",
+          title: "Put your bike on Janusz's table.",
+          body: "Download the new LANC, choose the bike, set the ride and let Janusz turn the chaos into a verdict before you clip in.",
+          button: "Get LANC 2.0 on the App Store",
+          phoneAria: "LANC 2.0 gear screen",
+          imageAlt: "LANC 2.0 gear screen with Janusz"
         },
         footer: {
           rights: "© 2026 LANC. All rights reserved.",
@@ -1358,8 +1358,8 @@
       },
       pl: {
         meta: {
-          title: "LANC - Twój system kolarski",
-          description: "LANC to system kolarski do rowerów, konfiguracji, planów jazdy, sprzętu, kompatybilności, serwisu, kosztów i decyzji o modernizacjach."
+          title: "LANC 2.0 - Janusz prowadzi",
+          description: "LANC 2.0 to kolarski system decyzji z Januszem: werdykty roweru, plan jazdy, sprzęt i lokalne wnioski dla spokojniejszych decyzji przed trasą."
         },
         language: {
           aria: "Switch to English",
@@ -1369,118 +1369,134 @@
         nav: {
           aria: "Nawigacja strony",
           appStore: "App Store",
-          useCases: "Scenariusze",
-          features: "Funkcje",
-          screenshots: "Zrzuty ekranu",
+          janusz: "Janusz",
+          scenarios: "Scenariusze",
+          screenshots: "Screeny",
           privacy: "Prywatność",
           support: "Wsparcie"
         },
         hero: {
-          eyebrow: "Kolarski system na iPhone'a",
-          subtitle: "Garaż, plan jazdy i serwis w jednym miejscu",
-          lead: "LANC porządkuje rowery, komponenty, zestawy, serwis, koszty i przygotowanie do jazdy. Mniej notatek, mniej zgadywania, więcej pewności przed kolejną trasą.",
-          proofAria: "Najważniejsze obszary LANC",
-          proofOne: "Rowery i konfiguracje",
-          proofTwo: "Sprawdzenie przed jazdą",
-          proofThree: "Serwis i koszty",
-          proofFour: "Sprzęt i zestawy",
-          appStore: "Pobierz w App Store",
-          support: "Wsparcie",
-          privacy: "Polityka prywatności",
-          phoneAria: "Zrzut ekranu aplikacji LANC",
-          screenshotAlt: "Ekran garażu LANC z rowerami i kartami gotowości"
+          eyebrow: "LANC 2.0 już w App Store",
+          title: "Janusz prowadzi.",
+          subtitle: "Cycling Decision System dla rowerów, planu jazdy i sprzętu.",
+          lead: "LANC 2.0 stawia Janusza w centrum kokpitu: czyta garaż, sprawdza rower, prowadzi plan jazdy, pilnuje sprzętu i zamienia luźne dane w decyzje, z których da się skorzystać.",
+          proofAria: "Najważniejsze obszary LANC 2.0",
+          proofOne: "Werdykty Janusza",
+          proofTwo: "Plan jazdy",
+          proofThree: "Sprzęt na stół",
+          proofFour: "Lokalne wnioski",
+          appStore: "Pobierz LANC 2.0",
+          janusz: "Poznaj Janusza",
+          phoneAria: "Ekran LANC 2.0 z Januszem",
+          screenshotAlt: "Ekran główny LANC 2.0 z Januszem pytającym, co dziś ogarniamy",
+          stampKicker: "Janusz Warsztat",
+          stampBody: "Co dziś ogarniamy?"
         },
         store: {
-          kicker: "Już dostępne",
-          title: "LANC jest już w App Store.",
-          body: "Pobierz aplikację na iPhone'a i trzymaj rowery, plany jazd, sprzęt oraz decyzje serwisowe w jednym spokojnym systemie kolarskim.",
+          kicker: "Wersja 2.0 już dostępna",
+          title: "Janusz nie jest już zapowiedzią.",
+          body: "Pobierz nowy LANC i pozwól Januszowi pomagać przy werdyktach roweru, trasie, ciśnieniu, sprzęcie i małych decyzjach, które kiedyś żyły w notatkach.",
           pillsAria: "Najważniejsze cechy aplikacji",
-          pillOne: "iPhone",
-          pillTwo: "Dane na iPhonie",
+          pillOne: "Janusz w środku",
+          pillTwo: "Działa lokalnie",
           pillThree: "Strava opcjonalnie",
           badgeAria: "Pobierz LANC w App Store",
           badgeTop: "Pobierz w",
           badgeBottom: "App Store",
           note: "Otwiera stronę LANC w App Store."
         },
-        announcement: {
-          eyebrow: "Mała zapowiedź",
-          title: "LANC 2.0 z Januszem już się rozgrzewa.",
-          body: "Janusz kręci już pierwsze kilometry w kolejnej wersji LANC. Szczegóły zostawiamy jeszcze w garażu, ale kierunek jest prosty: więcej podpowiedzi przed jazdą, mniej chaosu w decyzjach i trochę więcej charakteru w aplikacji.",
-          tagsAria: "Krótka zapowiedź LANC 2.0",
-          tagOne: "LANC 2.0",
-          tagTwo: "Janusz",
-          tagThree: "Wkrótce",
-          imageAlt: "Telefon z podglądem Janusza w aplikacji LANC",
-          caption: "Pierwszy cichy sygnał z kolejnego rozdziału."
+        janusz: {
+          eyebrow: "Janusz jest nowym centrum",
+          title: "To nie kolejny moduł. To Janusz.",
+          body: "Łączy rower, trasę, pogodę, koszty, modernizacje i sprzęt w jedną praktyczną rozmowę. Mniej przekopywania ekranów. Więcej: to jest ważne przed jazdą.",
+          cardOneKicker: "Werdykt roweru",
+          cardOneTitle: "Czy konfiguracja jest zdrowa?",
+          cardOneBody: "Janusz punktuje rower i mówi, co jest solidne, czego brakuje i co warto sprawdzić dalej.",
+          cardTwoKicker: "Plan jazdy",
+          cardTwoTitle: "Spokojny start.",
+          cardTwoBody: "Typ trasy, pogoda i ciśnienie zamieniają się w prostą decyzję przed wyjazdem.",
+          cardThreeKicker: "Wnioski",
+          cardThreeTitle: "Dane z sensem.",
+          cardThreeBody: "Lokalna historia działa od razu. Strava dokłada kontekst jazd, jeśli tego chcesz.",
+          cardFourKicker: "Sprzęt",
+          cardFourTitle: "Kurtka sama się nie spakuje.",
+          cardFourBody: "Wrzuć sprzęt na stół, a Janusz powie, co jedzie, co zostaje i co prosi o emeryturę."
         },
-        realRides: {
-          imageAlt: "Grupowa jazda szosowa w zmiennej pogodzie",
-          caption: "Zdjęcia z prawdziwej jazdy i decyzje, które naprawdę dzieją się przed trasą.",
-          eyebrow: "Realne jazdy, realne decyzje",
-          title: "LANC łączy garaż z trasą.",
-          body: "Zbiera drobne decyzje wokół każdej jazdy w jeden prosty proces: wybór roweru, sprawdzenie konfiguracji, przygotowanie zestawu, ocenę ryzyka i późniejsze sprawdzenie, co naprawdę poprawiło jazdę.",
-          pointOneTitle: "Przed",
-          pointOneBody: "Plan jazdy zamienia pogodę, ciśnienie i braki w sprzęcie w krótką listę kontrolną.",
-          pointTwoTitle: "W sezonie",
-          pointTwoBody: "Garaż trzyma każdy rower, komponent, zestaw kół i serwis w jednym kontekście.",
-          pointThreeTitle: "Po",
-          pointThreeBody: "Analityka i historia modernizacji pokazują, co się zmieniło, ile kosztowało i czy było warto."
+        decision: {
+          eyebrow: "Na stół Janusza",
+          title: "Wybierz, co ląduje na stole. Janusz daje werdykt.",
+          body: "Rower, trasa, pogoda, ciśnienie, ubranie, narzędzia, akcesoria, serwis i koszty. LANC 2.0 zamienia rozrzucone kolarskie szczegóły w jedną warstwę decyzji przed jazdą.",
+          noteKicker: "Ton aplikacji",
+          noteBody: "Po ludzku, z charakterem i praktycznie. Bez tabelkowego teatru, kiedy chcesz po prostu pojechać.",
+          tagsAria: "Obszary decyzji Janusza",
+          tagOne: "Rower",
+          tagTwo: "Trasa",
+          tagThree: "Sprzęt",
+          tagFour: "Dane"
         },
-        useCases: {
-          title: "Scenariusze z realnej jazdy",
-          body: "Kilka konkretnych momentów, w których LANC zastępuje luźne notatki, pamięć i zgadywanie przed wyjściem na rower.",
-          preRideAlt: "Rower z przednią i tylną lampką nocą",
-          preRideKicker: "01 / Przed jazdą",
-          preRideTitle: "Wyjdź z właściwą konfiguracją",
-          preRideBody: "Wybierz rower, ciśnienie, ubranie, lampki i zestaw naprawczy, zanim ruszysz.",
-          buildAlt: "Czarny rower szosowy pokazany z boku",
-          buildKicker: "02 / Paszport roweru",
-          buildTitle: "Pilnuj konfiguracji roweru",
-          buildBody: "Trzymaj komponenty, koła, opony, standardy napędu i historię serwisu w jednym paszporcie roweru.",
-          gearAlt: "Widok z góry na rower z torbami i bidonami",
-          gearKicker: "03 / Sprzęt i zestawy",
-          gearTitle: "Wiedz, co spakować",
-          gearBody: "Sprzęt i zestawy pokazują pogodę, typ jazdy, baterie i rzeczy zużywalne, zanim staną się problemem.",
-          upgradeAlt: "Grupa kolarzy jadąca drogą",
-          upgradeKicker: "04 / Wartość modernizacji",
-          upgradeTitle: "Niech modernizacja się obroni",
-          upgradeBody: "Porównuj koszty, zmiany i kontekst jazd, żeby modernizacja była decyzją z dowodami, nie strzałem."
+        scenarios: {
+          title: "Co ogarnia Janusz",
+          body: "Nowa wersja jest zbudowana wokół realnych momentów z jazdy: zanim wyjedziesz, kiedy dbasz o rower i kiedy chcesz wiedzieć, co naprawdę pomogło.",
+          planAlt: "Ekran Planu jazdy LANC 2.0 z Januszem i checklistą trasy",
+          planKicker: "01 / Trasa i pogoda",
+          planTitle: "Spokojniejszy start.",
+          planBody: "Wybierz typ jazdy i warunki. LANC zmienia ciśnienie, checklistę i ryzyko w coś, z czym da się działać.",
+          bikeAlt: "Ekran werdyktu roweru LANC 2.0 dla Pinarello Grevil F7",
+          bikeKicker: "02 / Werdykt roweru",
+          bikeTitle: "Ocena, która mówi dlaczego.",
+          bikeBody: "Janusz tłumaczy stan roweru po ludzku: konfigurację, serwis, koszty i następny sensowny krok.",
+          insightsAlt: "Ekran Wniosków LANC 2.0 z komentarzem Janusza o danych",
+          insightsKicker: "03 / Werdykt z danych",
+          insightsTitle: "Drogie nie zawsze znaczy mądre.",
+          insightsBody: "Koszty, modernizacje i kontekst jazd przestają być luźnymi faktami i zaczynają być decyzją.",
+          gearAlt: "Ekran Sprzętu LANC 2.0 z Januszem i odzieżą kolarską",
+          gearKicker: "04 / Sprzęt na stół",
+          gearTitle: "Pakuj pod jazdę, nie pod szafę.",
+          gearBody: "Ubrania, narzędzia i akcesoria dostają sens: co brać, co zostawić i co wymaga uwagi."
         },
         features: {
-          title: "Zbudowany wokół roweru",
-          body: "Każdy moduł ma prostą rolę: porządek w Garażu, decyzje w Planie jazdy i podsumowania w Analityce.",
-          garageTitle: "Garaż",
-          garageBody: "Twoje rowery, komponenty, wpisy serwisowe, koszty, historia konfiguracji i zestawy kół.",
-          rideTitle: "Plan jazdy",
-          rideBody: "Spokojne centrum decyzji przed jazdą: pogoda, ciśnienie, ryzyka i właściwy zestaw sprzętu.",
-          upgradeTitle: "Modernizacje",
-          upgradeBody: "Sprawdź, co zmieniło się w rowerze i czy dana modernizacja naprawdę miała sens.",
-          compatibilityTitle: "Kompatybilność",
-          compatibilityBody: "Sprawdzaj napęd, hamulce, osie, bębenki i standardy opon, zanim zmiana zrobi się kosztowna.",
-          gearTitle: "Sprzęt",
-          gearBody: "Porządek w ubraniach, akcesoriach, bateriach, rzeczach zużywalnych i zestawach na różne warunki.",
-          analyticsTitle: "Analityka",
-          analyticsBody: "Podsumowania działają lokalnie, a opcjonalne połączenie ze Stravą dodaje trendy jazd i szerszy kontekst."
+          title: "LANC 2.0 jako jeden system",
+          body: "Stary garaż nadal tu jest. Różnica jest taka, że Janusz łączy go teraz z decyzjami.",
+          oneKicker: "Garaż",
+          oneTitle: "Rower ma pamięć.",
+          oneBody: "Komponenty, koła, serwis, koszty i gotowość siedzą razem w jednej historii roweru.",
+          twoKicker: "Plan",
+          twoTitle: "Przed jazdą też się liczy.",
+          twoBody: "Pogoda, trasa, ciśnienie i sprzęt tworzą spokojny proces przygotowania.",
+          threeKicker: "Wnioski",
+          threeTitle: "Mniej zgadywania.",
+          threeBody: "Lokalna historia działa sama. Strava może dodać szerszy kontekst jazd po połączeniu.",
+          fourKicker: "Sprzęt",
+          fourTitle: "Zestaw ma zadanie.",
+          fourBody: "Ubrania, narzędzia, akcesoria, baterie i rzeczy zużywalne stają się częścią decyzji.",
+          fiveKicker: "Janusz",
+          fiveTitle: "Porada z charakterem.",
+          fiveBody: "Krótkie werdykty, praktyczny język i osobowość, dzięki której aplikacja żyje.",
+          sixKicker: "Kontrola",
+          sixTitle: "Twoje dane, twoje tempo.",
+          sixBody: "LANC trzyma podstawowe decyzje lokalnie, a połączenia zewnętrzne zostawia jako opcję."
         },
         screenshots: {
-          title: "Zrzuty ekranu",
-          body: "Zobacz najważniejsze ekrany: Garaż, Plan jazdy, Paszport roweru i Sprzęt.",
-          garageAlt: "Ekran Garażu w LANC",
-          garageCaption: "Garaż",
-          planAlt: "Ekran Planu jazdy w LANC",
+          title: "Screeny z LANC 2.0",
+          body: "Janusz Warsztat, werdykty roweru, Plan jazdy, Wnioski i Sprzęt w nowej wersji produkcyjnej.",
+          homeAlt: "Ekran Janusz Warsztat w LANC 2.0",
+          homeCaption: "Janusz Warsztat",
+          bikeAlt: "Ekran werdyktu roweru w LANC 2.0",
+          bikeCaption: "Werdykt roweru",
+          planAlt: "Ekran Planu jazdy w LANC 2.0",
           planCaption: "Plan jazdy",
-          bikeAlt: "Ekran Paszportu roweru w LANC",
-          bikeCaption: "Paszport roweru",
-          gearAlt: "Ekran Sprzętu w LANC",
+          insightsAlt: "Ekran Wniosków w LANC 2.0",
+          insightsCaption: "Wnioski",
+          gearAlt: "Ekran Sprzętu w LANC 2.0",
           gearCaption: "Sprzęt"
         },
         finalRide: {
-          imageAlt: "Kolarze jadący leśną drogą",
-          eyebrow: "Dla ludzi, którzy naprawdę jeżdżą",
-          title: "Pobierz LANC i zamień rowery w system.",
-          body: "Spokojniejszy garaż, dokładniejsze sprawdzenie przed jazdą i mniej przypadkowych notatek przed kolejną trasą.",
-          button: "Pobierz LANC w App Store"
+          eyebrow: "LANC 2.0 jest gotowy",
+          title: "Daj rower Januszowi na stół.",
+          body: "Pobierz nowy LANC, wybierz rower, ustaw jazdę i pozwól Januszowi zamienić chaos w werdykt, zanim wpiniesz buty.",
+          button: "Pobierz LANC 2.0 w App Store",
+          phoneAria: "Ekran Sprzętu w LANC 2.0",
+          imageAlt: "Ekran Sprzętu LANC 2.0 z Januszem"
         },
         footer: {
           rights: "© 2026 LANC. Wszelkie prawa zastrzeżone.",
